@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+body{
+    background: #212121; /* fallback for old browsers */
+    font-family: 'Karla', sans-serif;
+    color: white;
+}
