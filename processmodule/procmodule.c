@@ -18,7 +18,7 @@ MODULE_DESCRIPTION("Modulo que muestra procesos");
 
 struct task_struct *p;
 char *name;
-long pid_;
+long father;
 static int procShow(struct seq_file *m, void *v)
 {
     
