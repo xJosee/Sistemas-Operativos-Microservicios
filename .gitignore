@@ -6,3 +6,4 @@
 *.o
 *.mod
 *.order
+server/node_modules
