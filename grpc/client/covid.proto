@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto
+
+message Request {
+    string name = 1;
+    string location = 2;
+    string age = 3;
+    string infected_type = 4;
+    string state = 5;
+}
+
+message Response {}
+
+service addService {
+    rpc Add(Request) returns (Response);
+}
