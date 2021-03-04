@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto
 
-message Request {
+message CovidData {
     string name = 1;
     string location = 2;
     string age = 3;
@@ -13,5 +13,5 @@ message Request {
 message Response {}
 
 service addService {
-    rpc Add(Request) returns (Response);
+    rpc Pass(Request) returns (Response);
 }
