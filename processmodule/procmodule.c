@@ -16,16 +16,23 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Jose Eduardo Moran");
 MODULE_DESCRIPTION("Modulo que muestra procesos");
 
-struct task_struct *p;
-char *name;
-long father;
+struct task_struct *proc, *proc_child;
+struct list_head *list;
 static int procShow(struct seq_file *m, void *v)
 {
     
-    seq_printf(m, "[\n ");
-    for_each_process(p){
-        name = p->comm;
-        seq_printf(m, "{name:%s,\npid: %d},\n", name, p->pid);
+    seq_printf(m, "[ ");
+    for_each_process(proc){       
+        list_for_each(list, &proc->children){
+            proc_child = list_entry( list, struct task_struct, sibling );
+            if(list->prev == &proc->children){                
+                seq_printf(m,"\n{\"PadrePID\": \"-\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},",
+                    proc->pid, proc->comm, proc->state);
+            }    
+            seq_printf(m,"\n{\"PadrePID\": \"%d\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},", proc->pid, 
+                proc_child->pid, proc_child->comm, proc_child->state);
+        }	
+        
     }
     seq_printf(m, "]\n");
 

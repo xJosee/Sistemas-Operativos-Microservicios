@@ -28,7 +28,7 @@ static int procShow(struct seq_file *m, void *v)
     
     total = memstruct.totalram * 4;
     freer = memstruct.freeram * 4;
-    seq_printf(m, "%lu: %lu", total, freer);
+    seq_printf(m, "{\"Total\":\"%lu\", \"Libre\":\"%lu\"}", total, freer);
     return 0;
 }
 

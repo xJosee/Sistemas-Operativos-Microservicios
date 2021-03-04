@@ -4,8 +4,6 @@ all:
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(shell pwd) clean
 test:
-	sudo demesg -C 
-	dmesg 
 	sudo insmod rammodule.ko
 remove:
 	sudo rmmod rammodule.ko
