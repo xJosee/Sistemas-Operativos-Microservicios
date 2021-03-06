@@ -48,7 +48,7 @@ export default class LineExample extends Component {
     }
     fetchValues = () => {
         this.setState({ ...this.state, updatable: false });
-        fetch('http://34.70.137.25:4000/getRam  ')
+        fetch('http://localhost:4000/getRam  ')
             .then((response) => response.json())
             .then((json) => {
                 this.setState({ value: json.Total - json.Libre });
