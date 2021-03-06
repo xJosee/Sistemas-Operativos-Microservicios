@@ -22,13 +22,11 @@ static int procShow(struct seq_file *m, void *v)
 {
     
     seq_printf(m, "[ ");
-    for_each_process(proc){       
+    for_each_process(proc){
+        seq_printf(m,"\n{\"PadrePID\": \"-\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},",
+                    proc->pid, proc->comm, proc->state);       
         list_for_each(list, &proc->children){
-            proc_child = list_entry( list, struct task_struct, sibling );
-            if(list->prev == &proc->children){                
-                seq_printf(m,"\n{\"PadrePID\": \"-\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},",
-                    proc->pid, proc->comm, proc->state);
-            }    
+            proc_child = list_entry( list, struct task_struct, sibling ); 
             seq_printf(m,"\n{\"PadrePID\": \"%d\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},", proc->pid, 
                 proc_child->pid, proc_child->comm, proc_child->state);
         }	
