@@ -23,12 +23,19 @@ function RamCake() {
 
 
     useEffect(() => {
+        const interval = setInterval(() => {
 
+            fetchValues()
+
+        }, 1500);
+        return () => clearInterval(interval);
+    }, []);
+
+    const fetchValues = () => {
         fetch('http://34.70.137.25:4000/getRam')
             .then((response) => response.json())
             .then((json) => {
-
-
+                // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
                 const newData = {
                     labels: [
                         'Usada',
@@ -49,16 +56,11 @@ function RamCake() {
                 setData(newData)
             })
             .catch((error) => console.error(error))
-
-
-    }, []);
+    }
 
     return (
-        <div>
-            <div>
-                <h2>RAM</h2>
-                <Doughnut data={data} />
-            </div>
+        <div style={{ padding: 15 }}>
+            <Doughnut data={data} />
         </div>
     );
 }
