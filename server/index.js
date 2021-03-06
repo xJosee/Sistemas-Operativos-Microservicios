@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getProcesos', (req, res) => {
-    fs.readFile('/proc/procmodule', 'utf-8', (err, data) => {
+    fs.readFile('../../../../../Downloads/1.txt', 'utf-8', (err, data) => {
         if (err) {
             console.log('error: ', err);
         } else {
@@ -30,7 +30,7 @@ app.get('/getProcesos', (req, res) => {
 });
 
 app.get('/getRam', (req, res) => {
-    fs.readFile('/proc/rammodule', 'utf-8', (err, data) => {
+    fs.readFile('../../../../../Downloads/2.txt', 'utf-8', (err, data) => {
         if (err) {
             console.log('error: ', err);
         } else {

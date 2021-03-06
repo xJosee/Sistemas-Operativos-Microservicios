@@ -14,7 +14,7 @@ function Proc() {
     }, []);
 
     const fetchValues = () => {
-        fetch('http://34.70.137.25:4000/getProcesos')
+        fetch('http://localhost:4000/getProcesos')
             .then((response) => response.json())
             .then((json) => {
                 setData(json)

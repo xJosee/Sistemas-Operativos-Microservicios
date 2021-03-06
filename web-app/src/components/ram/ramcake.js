@@ -32,7 +32,7 @@ function RamCake() {
     }, []);
 
     const fetchValues = () => {
-        fetch('http://34.70.137.25:4000/getRam')
+        fetch('http://localhost:4000/getRam')
             .then((response) => response.json())
             .then((json) => {
                 // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
