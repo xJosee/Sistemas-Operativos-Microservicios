@@ -5,16 +5,15 @@ services:
       ports: 
           - "5672:5672"
           - "15672:15672"
-
   publisher-rmq:
-      build: ./Sender
+      build: ./publisher
+      restart: on-failure
       ports:
-        - "80:3000"
+        - "3100:3000"
       depends_on:
         - server-rmq
-
   consumer-rmq:
-      build: ./Receiver
+      build: ./consumer
       restart: on-failure
       depends_on:
         - server-rmq

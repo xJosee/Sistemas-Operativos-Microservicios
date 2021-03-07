@@ -40,7 +40,7 @@ func newPatient(wr http.ResponseWriter, r *http.Request) {
 	dataOnString := string(data)
 
 	//Connecting to RabbitMQ Server
-	conn, err := amqp.Dial("amqp://guest:guest@rabbitmq:5672/")
+	conn, err := amqp.Dial("amqp://guest:guest@server-rmq:5672/")
 	showError("RabbitMQ Server Connection", err)
 	defer conn.Close()
 

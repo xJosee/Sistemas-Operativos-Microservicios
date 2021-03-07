@@ -19,7 +19,7 @@ func showError(err error, msg string) {
 //main start the consumer
 func main() {
 	// Connecting to server
-	conn, err := amqp.Dial("amqp://guest:guest@rabbitmq:5672/")
+	conn, err := amqp.Dial("amqp://guest:guest@server-rmq:5672/")
 	showError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 
@@ -30,7 +30,7 @@ func main() {
 
 	// Declaring a new queue
 	q, err := ch.QueueDeclare(
-		"labso1",
+		"byRabbit",
 		false,
 		false,
 		false,
