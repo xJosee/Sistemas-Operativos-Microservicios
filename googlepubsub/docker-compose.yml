@@ -1,0 +1,11 @@
+
+version: "3.3"
+services:
+  publisher-pubsub:
+    build: ./publisher
+    restart: on-failure
+    ports:
+      - "5000:5000"
+  subscriber-pubsub:
+    build: ./subscriber
+    restart: on-failure
