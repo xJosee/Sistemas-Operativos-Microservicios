@@ -30,4 +30,4 @@ func main() {
 
 //IMPORTANT!!
 //Before run the file, set the environmental variable
-//export GOOGLE_APPLICATION_CREDENTIALS="../key.json"
+//export GOOGLE_APPLICATION_CREDENTIALS="./key.json"
