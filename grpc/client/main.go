@@ -4,7 +4,7 @@ import (
   	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"encoding/json"
-	//"google.golang.org/grpc"
+	"google.golang.org/grpc"
 	"./proto"
 	"fmt"
 )
@@ -20,18 +20,13 @@ func main() {
 
 	r := gin.Default()
 
-	r.POST("/", func(data *gin.Context) {
-		
+	r.POST("/", func(data *gin.Context) {	
 		var structure proto.CovidData;
-
 		jsonData, _ := ioutil.ReadAll(data.Request.Body)
 		json.Unmarshal(jsonData, &structure)
-
-		client.handlerData(data, &structure)
-
+		res, _ := client.HandlerData(data, &structure)
+		fmt.Println(res);
 	});
 
 	r.Run(":4000")
-
-	
 }

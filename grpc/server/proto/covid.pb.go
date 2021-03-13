@@ -15,6 +15,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+	"fmt"
 )
 
 const (
@@ -116,8 +117,8 @@ var file_covid_proto_rawDesc = []byte{
 	0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x69, 0x6e, 0x66,
 	0x65, 0x63, 0x74, 0x65, 0x64, 0x54, 0x79, 0x70, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61,
 	0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x32,
-	0x43, 0x0a, 0x0c, 0x63, 0x6f, 0x76, 0x69, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
-	0x33, 0x0a, 0x0b, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x10,
+	0x43, 0x0a, 0x0c, 0x43, 0x6f, 0x76, 0x69, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x33, 0x0a, 0x0b, 0x48, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x10,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6f, 0x76, 0x69, 0x64, 0x44, 0x61, 0x74, 0x61,
 	0x1a, 0x10, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6f, 0x76, 0x69, 0x64, 0x44, 0x61,
 	0x74, 0x61, 0x22, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
@@ -140,8 +141,8 @@ var file_covid_proto_goTypes = []interface{}{
 	(*CovidData)(nil), // 0: proto.CovidData
 }
 var file_covid_proto_depIdxs = []int32{
-	0, // 0: proto.covidService.handlerData:input_type -> proto.CovidData
-	0, // 1: proto.covidService.handlerData:output_type -> proto.CovidData
+	0, // 0: proto.CovidService.HandlerData:input_type -> proto.CovidData
+	0, // 1: proto.CovidService.HandlerData:output_type -> proto.CovidData
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -213,7 +214,7 @@ func NewCovidServiceClient(cc grpc.ClientConnInterface) CovidServiceClient {
 
 func (c *covidServiceClient) HandlerData(ctx context.Context, in *CovidData, opts ...grpc.CallOption) (*CovidData, error) {
 	out := new(CovidData)
-	err := c.cc.Invoke(ctx, "/proto.covidService/handlerData", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.CovidService/HandlerData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -238,6 +239,7 @@ func RegisterCovidServiceServer(s *grpc.Server, srv CovidServiceServer) {
 }
 
 func _CovidService_HandlerData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	fmt.Println(srv, ctx)
 	in := new(CovidData)
 	if err := dec(in); err != nil {
 		return nil, err
@@ -247,7 +249,7 @@ func _CovidService_HandlerData_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.covidService/HandlerData",
+		FullMethod: "/proto.CovidService/HandlerData",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CovidServiceServer).HandlerData(ctx, req.(*CovidData))
@@ -256,11 +258,11 @@ func _CovidService_HandlerData_Handler(srv interface{}, ctx context.Context, dec
 }
 
 var _CovidService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.covidService",
+	ServiceName: "proto.CovidService",
 	HandlerType: (*CovidServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "handlerData",
+			MethodName: "HandlerData",
 			Handler:    _CovidService_HandlerData_Handler,
 		},
 	},
