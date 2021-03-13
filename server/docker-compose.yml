@@ -1,0 +1,22 @@
+
+version: "3.3"
+services:
+  nodejs:
+    build: .
+    restart: always
+    ports:
+      - "4000:4000"
+    networks:
+      - networkapi
+    volumes:
+      - /proc:/usr/src/app/proc
+  mongodb:
+    image: mongo
+    restart: always
+    networks:
+      - networkapi
+    volumes:
+      - ./db:/data/db
+networks:
+  networkapi:
+    driver: bridge

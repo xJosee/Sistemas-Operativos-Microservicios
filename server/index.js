@@ -3,7 +3,6 @@ const app = express();
 const cors = require('cors')
 let fs = require('fs');
 
-
 app.use(express.json());
 
 app.use(cors());
@@ -20,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getProcesos', (req, res) => {
-    fs.readFile('../../../../../Downloads/1.txt', 'utf-8', (err, data) => {
+    fs.readFile('/usr/src/app/proc/', 'utf-8', (err, data) => {
         if (err) {
             console.log('error: ', err);
         } else {
@@ -30,7 +29,7 @@ app.get('/getProcesos', (req, res) => {
 });
 
 app.get('/getRam', (req, res) => {
-    fs.readFile('../../../../../Downloads/2.txt', 'utf-8', (err, data) => {
+    fs.readFile('./proc/rammmodule', 'utf-8', (err, data) => {
         if (err) {
             console.log('error: ', err);
         } else {
@@ -38,6 +37,13 @@ app.get('/getRam', (req, res) => {
         }
     });
 });
+
+app.post('/postData', (req, res) => {
+    console.log(req.body)
+
+    res.send({ message: 'Works' });
+
+})
 
 app.listen(4000, () => {
     console.log('server on port 4000');
