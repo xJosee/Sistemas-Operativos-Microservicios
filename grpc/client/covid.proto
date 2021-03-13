@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package proto
+package proto;
 
 message CovidData {
     string name = 1;
@@ -10,8 +10,6 @@ message CovidData {
     string state = 5;
 }
 
-message Response {}
-
-service addService {
-    rpc Pass(Request) returns (Response);
+service covidService {
+    rpc handlerData(CovidData) returns (CovidData){};
 }
