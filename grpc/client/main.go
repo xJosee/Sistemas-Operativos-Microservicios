@@ -1,31 +1,39 @@
 package main
 
 import (
-  	"github.com/gin-gonic/gin"
+	"context"
+	"fmt"
+	pb "../proto"
+	"google.golang.org/grpc"
+	"log"
+	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"encoding/json"
-	"google.golang.org/grpc"
-	"./proto"
-	"fmt"
 )
 
 func main() {
+	fmt.Println("Hello client ...")
 
-	conn, err := grpc.Dial("localhost:3000", grpc.WithInsecure())
+	opts := grpc.WithInsecure()
+	cc, err := grpc.Dial("localhost:3000", opts)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
+	defer cc.Close()
 
-	client := proto.NewCovidServiceClient(conn)
+	client := pb.NewCovidServiceClient(cc)
 
 	r := gin.Default()
+	r.POST("/", func(data *gin.Context) {
+		
+		var structure pb.ReqData;
 
-	r.POST("/", func(data *gin.Context) {	
-		var structure proto.CovidData;
 		jsonData, _ := ioutil.ReadAll(data.Request.Body)
 		json.Unmarshal(jsonData, &structure)
-		res, _ := client.HandlerData(data, &structure)
-		fmt.Println(res);
+
+		resp, _ := client.HandlerData(context.Background(), &structure)
+		fmt.Printf("Receive response => [%v]", resp)
+
 	});
 
 	r.Run(":4000")

@@ -1,40 +1,42 @@
 package main
 
 import (
+	"context"
+	"fmt"
+	pb "../proto"
+	"google.golang.org/grpc"
 	"log"
 	"net"
-	"./proto"
-	"google.golang.org/grpc"
-	"golang.org/x/net/context"
-	"google.golang.org/grpc/reflection"
-	"fmt"
 )
 
-type covidServiceClient struct {
-	cc grpc.ClientConnInterface
+type server struct {
+
 }
+
+func (*server) HandlerData(ctx context.Context, request *pb.ReqData) (*pb.ResData, error) {
+	response := &pb.ResData{
+		Name : request.GetName(),
+		Location: request.GetLocation(),
+		Age: request.GetAge(),
+		InfectedType : request.GetInfectedType(),
+		State : request.GetState(),
+		Way : "GRPC",
+	}
+	return response, nil
+}
+
+
 
 func main() {
-
-	fmt.Println("Server is running")
-
-	lis, err := net.Listen("tcp", ":3000")
+	address := "localhost:3000"
+	lis, err := net.Listen("tcp", address)
 	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+		log.Fatalf("Error %v", err)
 	}
+	fmt.Printf("Server is listening on %v ...", address)
 
-	var s proto.CovidServiceServer
+	s := grpc.NewServer()
+	pb.RegisterCovidServiceServer(s, &server{})
 
-	grpcServer := grpc.NewServer()
-
-	proto.RegisterCovidServiceServer(grpcServer, s)
-	reflection.Register(grpcServer)
-
-	if err := grpcServer.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %s", err)
-	}
-}
-
-func (c *covidServiceClient) HandlerData(ctx context.Context, in *proto.CovidData) (*proto.CovidData, error) {
-	return in, nil
+	s.Serve(lis)
 }

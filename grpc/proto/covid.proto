@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package grpc;
+
+message ReqData {
+    string name = 1;
+    string location = 2;
+    string age = 3;
+    string infected_type = 4;
+    string state = 5;
+}
+
+message ResData {
+    string name = 1;
+    string location = 2;
+    string age = 3;
+    string infected_type = 4;
+    string state = 5;
+    string way = 6;
+}
+
+service covidService {
+    rpc handlerData(ReqData) returns (ResData){};
+}
