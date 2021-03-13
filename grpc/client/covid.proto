@@ -10,6 +10,6 @@ message CovidData {
     string state = 5;
 }
 
-service covidService {
-    rpc handlerData(CovidData) returns (CovidData){};
+service CovidService {
+    rpc HandlerData(CovidData) returns (CovidData){};
 }
