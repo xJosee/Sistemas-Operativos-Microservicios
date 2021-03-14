@@ -11,8 +11,6 @@ RUN apt-get update && apt-get install -y zip && \
 
 ENV PATH=$PATH:$GOPATH/bin:/opt/protoc/bin
 
-WORKDIR .
-
 COPY . .
 
 RUN go mod download

@@ -11,15 +11,12 @@ RUN apt-get update && apt-get install -y zip && \
 
 ENV PATH=$PATH:$GOPATH/bin:/opt/protoc/bin
 
-WORKDIR /client
+COPY . .
 
-RUN mkdir -p proto 
+RUN go mod download
 
-COPY ./proto/covid.proto ./proto
-COPY main.go .
+RUN protoc --go_out=plugins=grpc:. ./proto/covid.proto
 
-RUN protoc --go_out=plugins=grpc:proto /proto/covid.proto
-
-EXPOSE 3000
+EXPOSE 3000 4000
 
 CMD [ "go", "run", "main.go" ]
