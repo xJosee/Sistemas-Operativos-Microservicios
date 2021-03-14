@@ -43,7 +43,7 @@ func homePage(w http.ResponseWriter, r *http.Request){
 	http.Error(w, err.Error(), http.StatusBadRequest)
 	return
     }
-	result["middleware"]="Google PubSub"
+	result["way"]="Google PubSub"
 
 	jsonString ,_ := json.Marshal(result)
 	publish(string(jsonString))
@@ -52,7 +52,7 @@ func homePage(w http.ResponseWriter, r *http.Request){
 
 func handleRequests() {
     http.HandleFunc("/", homePage)
-    log.Fatal(http.ListenAndServe(":5000", nil))
+    log.Fatal(http.ListenAndServe(":4000", nil))
 }
 func main()  {
 	handleRequests()
