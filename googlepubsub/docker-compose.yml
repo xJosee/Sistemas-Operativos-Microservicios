@@ -5,7 +5,7 @@ services:
     build: ./publisher
     restart: on-failure
     ports:
-      - "5000:5000"
+      - "4000:4000"
   subscriber-pubsub:
     build: ./subscriber
     restart: on-failure
