@@ -12,13 +12,14 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello client ...")
-
+	
+	address := "localhost:3000"
 	opts := grpc.WithInsecure()
-	cc, err := grpc.Dial("localhost:3000", opts)
+	cc, err := grpc.Dial(address, opts)
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Printf("Client is running")
 	defer cc.Close()
 
 	client := pb.NewCovidServiceClient(cc)
@@ -31,8 +32,7 @@ func main() {
 		jsonData, _ := ioutil.ReadAll(data.Request.Body)
 		json.Unmarshal(jsonData, &structure)
 
-		resp, _ := client.HandlerData(context.Background(), &structure)
-		fmt.Printf("Receive response => [%v]", resp)
+		client.HandlerData(context.Background(), &structure)
 
 	});
 
