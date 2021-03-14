@@ -1,9 +1,0 @@
-*.mod.*
-*.ko.*
-*.o.*
-*.symvers
-*.ko
-*.o
-*.mod
-*.order
-server/node_modules
