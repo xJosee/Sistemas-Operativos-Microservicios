@@ -3,7 +3,6 @@ services:
   grpc-client:
     build: ./client
     ports:
-      - "3000:3000"
       - "4000:4000"
 
   grpc-server:

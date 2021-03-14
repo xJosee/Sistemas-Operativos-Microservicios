@@ -1,13 +1,25 @@
 FROM golang:latest
 
-# Install dependecies
-RUN go get -u google.golang.org/grpc 
-RUN go get -u github.com/golang/protobuf/protoc-gen-go
+# Install grpc
+RUN go get -u google.golang.org/grpc && \
+    go get -u github.com/golang/protobuf/protoc-gen-go
 
-WORKDIR /
+# Install protoc and zip system library
+RUN apt-get update && apt-get install -y zip && \
+    mkdir /opt/protoc && cd /opt/protoc && wget https://github.com/protocolbuffers/protobuf/releases/download/v3.7.0/protoc-3.7.0-linux-x86_64.zip && \
+    unzip protoc-3.7.0-linux-x86_64.zip
 
-COPY . .
+ENV PATH=$PATH:$GOPATH/bin:/opt/protoc/bin
+
+WORKDIR /client
+
+RUN mkdir -p proto 
+
+COPY ./proto/covid.proto ./proto
+COPY main.go .
+
+RUN protoc --go_out=plugins=grpc:proto /proto/covid.proto
 
 EXPOSE 3000
 
-CMD ["go", "run", "main.go"]
+CMD [ "go", "run", "main.go" ]
