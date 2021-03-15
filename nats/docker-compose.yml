@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  server-nats:
+      image : nats
+      container_name: server-nats
+  publisher-nats:
+      build: ./publisher
+      restart: on-failure
+      ports:
+        - "4000:3000"
+      depends_on:
+        - server-nats
+  subscriber-nats:
+      build: ./subscriber
+      restart: on-failure
+      depends_on:
+        - server-nats

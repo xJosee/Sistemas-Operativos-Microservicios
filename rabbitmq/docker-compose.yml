@@ -9,7 +9,7 @@ services:
       build: ./publisher
       restart: on-failure
       ports:
-        - "3100:3000"
+        - "4000:3000"
       depends_on:
         - server-rmq
   consumer-rmq:

@@ -35,6 +35,7 @@ func newPatient(wr http.ResponseWriter, r *http.Request) {
 	var body map[string]interface{}
 	err := json.NewDecoder(r.Body).Decode(&body)
 	showError("Parsing JSON", err)
+	body["way"] = "RabbitMQ"
 	data, err := json.Marshal(body)
 	//Convert to text (to make more easy to transfer)
 	dataOnString := string(data)
