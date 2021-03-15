@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	pb "./proto"
+	pb "client/proto"
 	"google.golang.org/grpc"
 	"log"
 	"github.com/gin-gonic/gin"
