@@ -34,7 +34,7 @@ func (*server) HandlerData(ctx context.Context, request *pb.ReqData) (*pb.ResDat
 }
 
 func main() {
-	address := "localhost:3000"
+	address := ":3000"
 	lis, err := net.Listen("tcp", address)
 	if err != nil {
 		log.Fatalf("Error %v", err)

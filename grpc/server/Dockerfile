@@ -1,6 +1,6 @@
 FROM golang:alpine as build-env
 
-WORKDIR /client
+WORKDIR /server
 
 COPY . .
 
@@ -8,4 +8,4 @@ RUN go mod download
 
 CMD ["go", "run", "main.go"]
 
-EXPOSE 4000
+EXPOSE 3000
