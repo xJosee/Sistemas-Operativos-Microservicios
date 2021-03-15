@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors')
-let fs = require('fs');
+//mongo db connection
+require('./src/database/database');
 
 app.use(express.json());
 

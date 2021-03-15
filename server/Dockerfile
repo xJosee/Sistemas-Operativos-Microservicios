@@ -1,7 +1,8 @@
 FROM node:14
 
 WORKDIR /usr/src/app
-RUN mkdir -p proc 
+
+RUN mkdir proc
 
 COPY package*.json ./
 
