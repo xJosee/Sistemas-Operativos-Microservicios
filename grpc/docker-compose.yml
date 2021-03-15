@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  grpc-client:
+    build: ./client
+    ports:
+      - "4000:4000"
+
+  grpc-server:
+    build: ./server
+    ports:
+      - "3000:3000"
