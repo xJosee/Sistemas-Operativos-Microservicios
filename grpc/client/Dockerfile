@@ -8,4 +8,4 @@ RUN go mod download
 
 CMD ["go", "run", "main.go"]
 
-EXPOSE 3000
+EXPOSE 4000

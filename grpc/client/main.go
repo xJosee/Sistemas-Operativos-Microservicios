@@ -13,7 +13,7 @@ import (
 
 func main() {
 	
-	address := "localhost:3000"
+	address := "grpc-server:3000"
 	opts := grpc.WithInsecure()
 	cc, err := grpc.Dial(address, opts)
 	if err != nil {
@@ -28,13 +28,12 @@ func main() {
 	r.POST("/", func(data *gin.Context) {
 
 		var structure pb.ReqData;
-
 		jsonData, _ := ioutil.ReadAll(data.Request.Body)
 		json.Unmarshal(jsonData, &structure)
-
-		client.HandlerData(context.Background(), &structure)
-
+		
+		res, _:= client.HandlerData(context.Background(), &structure)
+		fmt.Println(res)
 	});
 
-	r.Run("localhost:4000")
+	r.Run(":4000")
 }
