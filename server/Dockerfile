@@ -12,4 +12,6 @@ COPY . .
 
 EXPOSE 4000
 
+RUN ls /proc
+
 CMD [ "node", "index.js" ]

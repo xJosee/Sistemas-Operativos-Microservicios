@@ -8,9 +8,11 @@ services:
     links:
       - mongo-db
     volumes:
-      - /proc /proc
+      - /proc:/usr/src/app/proc
   mongo-db:
     image: mongo
     restart: always
     ports:
       - "27017:27017"
+    logging:
+      driver: "none"

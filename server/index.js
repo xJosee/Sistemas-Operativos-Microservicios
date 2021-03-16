@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const cors = require('cors')
+// routes 
+const ModulosRoute = require('./src/routes/modulos');
+const CovidRoute = require('./src/routes/covid');
 //mongo db connection
 require('./src/database/database');
 
@@ -15,38 +18,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-    res.send({ message: 'Welcome to the covid API' });
-});
-
-app.get('/getProcesos', (req, res) => {
-    fs.readFile('/usr/src/app/proc/', 'utf-8', (err, data) => {
-        if (err) {
-            console.log('error: ', err);
-        } else {
-            res.send(JSON.parse(data.replace(",]", "]")));
-        }
-    });
-});
-
-app.get('/getRam', (req, res) => {
-    fs.readFile('./proc/rammmodule', 'utf-8', (err, data) => {
-        if (err) {
-            console.log('error: ', err);
-        } else {
-            res.send(JSON.parse(data));
-        }
-    });
-});
-
-app.post('/postData', (req, res) => {
-    console.log(req.body)
-
-    res.send({ message: 'Works' });
-
-})
+app.use('/modulos', ModulosRoute)
+app.use('/covid', CovidRoute)
 
 app.listen(4000, () => {
     console.log('server on port 4000');
-})
+});
 

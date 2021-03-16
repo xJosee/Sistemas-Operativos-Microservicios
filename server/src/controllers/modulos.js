@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = {
 
     getProcesos(req, res) {
-        fs.readFile('./proc/procmodule', 'utf-8', (err, data) => {
+        fs.readFile('/usr/src/app/proc/procmodule', 'utf-8', (err, data) => {
             if (err) {
                 console.log('error: ', err);
             } else {
@@ -13,7 +13,7 @@ module.exports = {
     },
 
     getRam(req, res) {
-        fs.readFile('./proc/rammodule', 'utf-8', (err, data) => {
+        fs.readFile('/usr/src/app/proc/rammodule', 'utf-8', (err, data) => {
             if (err) {
                 console.log('error: ', err);
             } else {
