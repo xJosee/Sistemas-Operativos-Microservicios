@@ -2,10 +2,15 @@ const covidModel = require('../database/covid.schema');
 
 module.exports = {
 
-    createRecord(req, res) {
+    async createRecord(req, res) {
         const data = new covidModel(req.body);
-        data.save();
+        await data.save();
         res.status(200).send({ message: 'caso creado correctamente' });
+    },
+
+    async readAllRecord(req, res) {
+        const datos = await covidModel.find();
+        res.status(200).send(datos);
     }
 
 }
