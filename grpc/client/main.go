@@ -35,7 +35,7 @@ func main() {
 		fmt.Println(res)
 	});
 
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{"message": "ok",})
 	})
 
