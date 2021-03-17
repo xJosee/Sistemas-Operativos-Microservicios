@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  node-api:
+    build: .
+    restart: always
+    ports:
+      - "7000:7000"
+    links:
+      - mongo-db
+    volumes:
+      - /proc:/usr/src/app/proc
+  mongo-db:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    logging:
+      driver: "none"

@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const cors = require('cors')
-let fs = require('fs');
-
+// routes 
+const ModulosRoute = require('./src/routes/modulos');
+const CovidRoute = require('./src/routes/covid');
+//mongo db connection
+require('./src/database/database');
 
 app.use(express.json());
 
@@ -15,31 +18,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-    res.send({ message: 'Welcome to the covid API' });
-});
+app.use('/modulos', ModulosRoute)
+app.use('/', CovidRoute)
 
-app.get('/getProcesos', (req, res) => {
-    fs.readFile('../../../../../Downloads/1.txt', 'utf-8', (err, data) => {
-        if (err) {
-            console.log('error: ', err);
-        } else {
-            res.send(JSON.parse(data.replace(",]", "]")));
-        }
-    });
+app.listen(7000, () => {
+    console.log('server on port 7000');
 });
-
-app.get('/getRam', (req, res) => {
-    fs.readFile('../../../../../Downloads/2.txt', 'utf-8', (err, data) => {
-        if (err) {
-            console.log('error: ', err);
-        } else {
-            res.send(JSON.parse(data));
-        }
-    });
-});
-
-app.listen(4000, () => {
-    console.log('server on port 4000');
-})
 

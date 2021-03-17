@@ -5,9 +5,11 @@ import (
 	"context"
 	
 	"cloud.google.com/go/pubsub"
+	"net/http"
+	"bytes"
 )
 
-func main() {
+func subscribe()  {
 	//Create a context
 	ctx := context.Background()
 
@@ -21,13 +23,20 @@ func main() {
 
 	//this method receives all the messages that were sent by the publisher
 	err = sub.Receive(ctx, func(ctx context.Context, m *pubsub.Message) {
-		s := string(m.Data)
-		fmt.Println(m.ID,s)
+		//s := string(m.Data)
+		fmt.Println(m.ID,string(m.Data))
+
+		Body := bytes.NewBuffer(m.Data)
+		http.Post("http://34.70.137.25:7000/postData", "application/json", Body)
 
 		m.Ack()
 	})
 }
 
+func main() {
+	subscribe()
+}
+
 //IMPORTANT!!
 //Before run the file, set the environmental variable
-//export GOOGLE_APPLICATION_CREDENTIALS="../key.json"
+//export GOOGLE_APPLICATION_CREDENTIALS="./key.json"

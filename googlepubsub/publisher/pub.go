@@ -8,10 +8,7 @@ import (
 	"encoding/json"
 	"cloud.google.com/go/pubsub"
 )
-//Struct to save messages
-type Msg struct {
-    Value string
-}
+
 
 func publish(message string) {
 	//Create a context
@@ -39,19 +36,23 @@ func publish(message string) {
 func homePage(w http.ResponseWriter, r *http.Request){
     fmt.Fprintf(w, "Welcome!")
 	//Create a var, this will help us to get all the attributes of the body
-	var m Msg
-	//Pass by reference the var, this step saves all the values in the struct
-	err := json.NewDecoder(r.Body).Decode(&m)
+
+	var result map[string]interface{}
+	err := json.NewDecoder(r.Body).Decode(&result)
 	if err != nil {
-        http.Error(w, err.Error(), http.StatusBadRequest)
-        return
+	http.Error(w, err.Error(), http.StatusBadRequest)
+	return
     }
-	publish(m.Value)
+	result["way"]="Google PubSub"
+
+	jsonString ,_ := json.Marshal(result)
+	publish(string(jsonString))
+
 }
 
 func handleRequests() {
     http.HandleFunc("/", homePage)
-    log.Fatal(http.ListenAndServe(":5000", nil))
+    log.Fatal(http.ListenAndServe(":4000", nil))
 }
 func main()  {
 	handleRequests()
@@ -60,4 +61,4 @@ func main()  {
 
 //IMPORTANT!!
 //Before run the file, set the environmental variable
-//export GOOGLE_APPLICATION_CREDENTIALS="../key.json"
+//export GOOGLE_APPLICATION_CREDENTIALS="./key.json"
