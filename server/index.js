@@ -19,9 +19,9 @@ app.use((req, res, next) => {
 });
 
 app.use('/modulos', ModulosRoute)
-app.use('/covid', CovidRoute)
+app.use('/', CovidRoute)
 
-app.listen(4000, () => {
-    console.log('server on port 4000');
+app.listen(7000, () => {
+    console.log('server on port 7000');
 });
 
