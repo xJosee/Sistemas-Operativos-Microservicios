@@ -5,13 +5,7 @@ module.exports = {
     async createRecord(req, res) {
         var values = req.body;
         console.log(values);
-        const data = new covidModel(
-            values.name,
-            values.location,
-            values.age,
-            values.infectedtype,
-            values.way
-        );
+        const data = new covidModel(req.body);
         await data.save();
         res.status(200).send({ message: 'caso creado correctamente' });
     },
