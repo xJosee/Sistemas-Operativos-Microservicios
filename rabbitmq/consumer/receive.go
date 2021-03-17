@@ -59,7 +59,7 @@ func main() {
 			log.Printf("Received a message: %s", d.Body)
 
 			postBody := []byte(string(d.Body))
-			req, err := http.Post("http://34.70.137.25:7000/postData", "application/json", bytes.NewBuffer(postBody))
+			req, err := http.Post("http://34.67.69.50:7000/postData", "application/json", bytes.NewBuffer(postBody))
 			req.Header.Set("Content-Type", "application/json")
 			showError(err, "POST new document")
 			defer req.Body.Close()

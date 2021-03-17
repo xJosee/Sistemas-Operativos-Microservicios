@@ -27,7 +27,7 @@ func subscribe()  {
 		fmt.Println(m.ID,string(m.Data))
 
 		Body := bytes.NewBuffer(m.Data)
-		http.Post("http://34.70.137.25:7000/postData", "application/json", Body)
+		http.Post("http://34.67.69.50:7000/postData", "application/json", Body)
 
 		m.Ack()
 	})

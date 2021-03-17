@@ -28,7 +28,7 @@ func main() {
 			msg, err := sub.NextMsg(1000 * 1000 * time.Hour)
 			showError("Failed receiving message", err)
 
-			req, err := http.Post("http://34.70.137.25:7000/postData", "application/json", bytes.NewBuffer(msg.Data))
+			req, err := http.Post("http://34.67.69.50:7000/postData", "application/json", bytes.NewBuffer(msg.Data))
 			req.Header.Set("Content-Type", "application/json")
 			showError("POST new document", err)
 			defer req.Body.Close()
