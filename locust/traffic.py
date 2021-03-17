@@ -20,7 +20,7 @@ class Patient(HttpUser):
         if indexPatient < len(listPatients) - 1:
             indexPatient += 1
 
-        with self.client.post('/register', json=dataPatient, catch_response = True) as res:
+        with self.client.post('/', json=dataPatient, catch_response = True) as res:
             print(dataPatient)
             if res.status_code == 200:
                 print("OK!")
