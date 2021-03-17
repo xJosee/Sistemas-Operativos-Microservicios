@@ -28,7 +28,7 @@ func (*server) HandlerData(ctx context.Context, request *pb.ReqData) (*pb.ResDat
 	// mando al server de node la data
 	jsonData, _ := json.Marshal(response)
 	Body := bytes.NewBuffer(jsonData)
-	http.Post("http://34.70.137.25:7000/postData", "application/json", Body)
+	http.Post("http://34.67.69.50:7000/postData", "application/json", Body)
 	// retorno al cliente la data que envié
 	return response, nil
 }
