@@ -31,6 +31,12 @@ func newPatient(wr http.ResponseWriter, r *http.Request) {
 	//Adding headers for send json
 	wr.Header().Set("Content-Type", "application/json")
 
+	if r.Method == "GET" {
+		wr.WriteHeader(http.StatusOK)
+		wr.Write([]byte("{\"message\": \"ok\"}"))
+		return
+	}
+
 	//Parsing the body of response
 	var body map[string]interface{}
 	err := json.NewDecoder(r.Body).Decode(&body)
