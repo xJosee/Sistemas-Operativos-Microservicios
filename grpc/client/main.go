@@ -31,8 +31,8 @@ func main() {
 		jsonData, _ := ioutil.ReadAll(data.Request.Body)
 		json.Unmarshal(jsonData, &structure)
 		
-		client.HandlerData(context.Background(), &structure)
-		fmt.Println(structure)
+		res, _ := client.HandlerData(context.Background(), &structure)
+		fmt.Println(res)
 	});
 
 	r.GET("/", func(c *gin.Context) {
