@@ -1,0 +1,1 @@
+cmd_/home/joseluis/covid-app-cloud/processmodule/procmodule.mod := { echo  /home/joseluis/covid-app-cloud/processmodule/procmodule.o;  echo; } > /home/joseluis/covid-app-cloud/processmodule/procmodule.mod

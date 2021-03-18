@@ -2,7 +2,6 @@
 import '../../App.css';
 import RamCake from './ram/ramcake'
 import LineExample from './ram/line'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Proc from './proc';
 
 function Modules() {

@@ -1,5 +1,4 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Covid from './components/covid-data/covid-data';
 import Modules from './components/modules-data/modules-data';
 import Home from './components/home';
@@ -12,7 +11,7 @@ function App() {
     <>
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link className="navbar-brand ml-3" to="/Home">Covid-App Cloud</Link>
+          <Link className="navbar-brand ml-3" to="/">Covid-App Cloud</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -24,7 +23,7 @@ function App() {
           </div>
         </nav>
         <Switch>
-          <Route path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
           <Route path="/covid" component={Covid} />
           <Route path="/modules" component={Modules} />
         </Switch>
