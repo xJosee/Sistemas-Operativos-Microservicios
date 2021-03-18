@@ -26,7 +26,6 @@ func main() {
 
 	r := gin.Default()
 	r.POST("/", func(data *gin.Context) {
-
 		var structure pb.ReqData;
 		jsonData, _ := ioutil.ReadAll(data.Request.Body)
 		json.Unmarshal([]byte(jsonData), &structure)
