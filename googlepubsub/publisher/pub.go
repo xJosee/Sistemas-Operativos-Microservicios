@@ -36,12 +36,17 @@ func publish(message string) {
 func homePage(w http.ResponseWriter, r *http.Request){
     fmt.Fprintf(w, "Welcome!")
 	//Create a var, this will help us to get all the attributes of the body
+	if r.Method == "GET" {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("{\"message\": \"ok\"}"))
+		return
+	}
 
 	var result map[string]interface{}
 	err := json.NewDecoder(r.Body).Decode(&result)
 	if err != nil {
-	http.Error(w, err.Error(), http.StatusBadRequest)
-	return
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
     }
 	result["way"]="Google PubSub"
 
