@@ -29,8 +29,8 @@ func main() {
 
 		var structure pb.ReqData;
 		jsonData, _ := ioutil.ReadAll(data.Request.Body)
-		fmt.Println(jsonData)
 		json.Unmarshal([]byte(jsonData), &structure)
+		fmt.Println(structure)
 		res, _ := client.HandlerData(context.Background(), &structure)
 		fmt.Println(res)
 	});
