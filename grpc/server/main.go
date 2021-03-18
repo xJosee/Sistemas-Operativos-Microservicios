@@ -17,7 +17,6 @@ type server struct {
 }
 
 func (*server) HandlerData(ctx context.Context, request *pb.ReqData) (*pb.ResData, error) {
-	fmt.Println(request)
 	response := &pb.ResData{
 		Name : request.GetName(),
 		Location: request.GetLocation(),
