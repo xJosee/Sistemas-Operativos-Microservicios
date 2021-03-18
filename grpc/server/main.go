@@ -21,7 +21,7 @@ func (*server) HandlerData(ctx context.Context, request *pb.ReqData) (*pb.ResDat
 		Name : request.GetName(),
 		Location: request.GetLocation(),
 		Age: request.GetAge(),
-		Infectedtype : request.GetInfectedType(),
+		Infectedtype : request.GetInfectedtype(),
 		State : request.GetState(),
 		Way : "GRPC",
 	}
