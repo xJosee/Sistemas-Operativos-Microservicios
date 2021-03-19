@@ -2,13 +2,23 @@ import './App.css';
 import Covid from './components/covid-data/covid-data';
 import Modules from './components/modules-data/modules-data';
 import Home from './components/home';
+import About from './components/About';
 import { Route, Switch } from "react-router";
 import { BrowserRouter as Router, Link } from 'react-router-dom'
-
+import { useState, useEffect } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
-  return (
-    <>
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  const renderPage = () => {
+    return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link className="navbar-brand ml-3" to="/">Covid-App Cloud</Link>
@@ -19,6 +29,7 @@ function App() {
             <div className="navbar-nav ml-auto mr-3">
               <Link className="nav-item nav-link" to="/covid">Covid</Link>
               <Link className="nav-item nav-link" to="/modules">Modules</Link>
+              <Link className="nav-item nav-link" to="/about">About</Link>
             </div>
           </div>
         </nav>
@@ -26,10 +37,28 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/covid" component={Covid} />
           <Route path="/modules" component={Modules} />
+          <Route path="/about" component={About} />
         </Switch>
       </Router>
+    );
+  }
+
+  const renderLoader = () => {
+    return (
+      <div className="wrapper">
+        <h1 className="title">Covid App</h1>
+        <ClipLoader color={"#000"} loading={loading} size={40} />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {loading ? renderLoader() : renderPage()}
     </>
   );
+
+
 }
 
 export default App;
