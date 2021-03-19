@@ -42,7 +42,23 @@ function Proc() {
                                 <td>{item.PadrePID}</td>
                                 <td>{item.PID}</td>
                                 <td>{item.Nombre}</td>
-                                <td>{item.Estado}</td>
+                                <td>{            
+                                    (item.Estado == 0) ? 'RUNNING' :
+                                    (item.Estado == 1) ? 'INTERRUPTIBLE' :
+                                    (item.Estado == 2) ? 'UNINTERRUPTIBLE' :
+                                    (item.Estado == 4) ? 'STOPPED':
+                                    (item.Estado == 8) ? 'TRACE' :
+                                    (item.Estado == 16) ? 'EXIT_DEAD' :
+                                    (item.Estado == 32) ? 'EXIT_ZOMBIE' :
+                                    (item.Estado == 64) ? 'DEAD' :
+                                    (item.Estado == 128) ? 'WAKEKILL' :
+                                    (item.Estado == 256) ? 'WAKING' :
+                                    (item.Estado == 512) ? 'PARKED' :
+                                    (item.Estado == 1024) ? 'NOLOAD' :
+                                    (item.Estado == 1026) ? 'SLEEPING' :
+                                    (item.Estado == 2048) ? 'STATE_MAX'
+                                    : item.Estado
+                                    }</td>
                             </tr>
                         ))
                     }

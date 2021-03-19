@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
 
-function RamCake() {
+function RamCake({size}) {
     const [data, setData] = useState({
         labels: [
             'Usada',
@@ -29,7 +29,7 @@ function RamCake() {
 
         }, 1500);
         return () => clearInterval(interval);
-    }, []);
+    });
 
     const fetchValues = () => {
         fetch('http://34.67.69.50:7000/modulos/getRam')
@@ -38,11 +38,12 @@ function RamCake() {
                 // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
                 const newData = {
                     labels: [
-                        'Usada',
-                        'Libre'
+                        'Usada (' + ( (size === 1) ? 'KiB' : (size === 1024) ? 'MiB' : 'GiB' ) + ')',
+                        'Libre (' + ( (size === 1) ? 'KiB' : (size === 1024) ? 'MiB' : 'GiB' ) + ')'
                     ],
                     datasets: [{
-                        data: [json.Total - json.Libre, json.Libre],
+                        data: (size === 1) ? [ json.Total - json.Libre, json.Libre] :
+                        [((json.Total - json.Libre)/size).toFixed(2), (json.Libre/size).toFixed(2)],
                         backgroundColor: [
                             '#30475e',
                             '#f05454'
