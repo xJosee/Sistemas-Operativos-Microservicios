@@ -11,12 +11,12 @@ function RamCake() {
         datasets: [{
             data: [50, 50],
             backgroundColor: [
-                '#332791',
-                '#7666F3'
+                '#30475e',
+                '#f05454'
             ],
             hoverBackgroundColor: [
-                '#332791',
-                '#7666F3'
+                '#30475e',
+                '#f05454'
             ]
         }]
     })
@@ -44,12 +44,12 @@ function RamCake() {
                     datasets: [{
                         data: [json.Total - json.Libre, json.Libre],
                         backgroundColor: [
-                            '#332791',
-                            '#7666F3'
+                            '#30475e',
+                            '#f05454'
                         ],
                         hoverBackgroundColor: [
-                            '#332791',
-                            '#7666F3'
+                            '#30475e',
+                            '#f05454'
                         ]
                     }]
                 }

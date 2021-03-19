@@ -16,8 +16,8 @@ export default class LineExample extends Component {
                     {
                         label: 'Ram in time',
                         data: [],
-                        backgroundColor: 'rgba(118, 102, 243, 0.7)',
-                        borderColor: 'rgba(51, 39, 145)',
+                        backgroundColor: 'rgba(240, 84, 84, 0.8)',
+                        borderColor: 'rgba(48, 71, 94)',
                         borderWidth: 1,
 
                     },
