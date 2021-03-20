@@ -1,35 +1,36 @@
 import { useEffect, useState } from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
+import { Form } from 'react-bootstrap'
 
 
-function RamCake({size}) {
+function PieGraph() {
     const [data, setData] = useState({
         labels: [
-            'Usada',
-            'Libre'
+            'Red',
+            'Yellow'
         ],
         datasets: [{
-            data: [50, 50],
+            data: [300, 50],
             backgroundColor: [
-                '#30475e',
+                '#222831',
                 '#f05454'
             ],
             hoverBackgroundColor: [
-                '#30475e',
+                '#222831',
                 '#f05454'
             ]
         }]
     })
 
 
-    useEffect(() => {
+    /*useEffect(() => {
         const interval = setInterval(() => {
 
             fetchValues()
 
         }, 1500);
         return () => clearInterval(interval);
-    });
+    }, []);
 
     const fetchValues = () => {
         fetch('http://34.67.69.50:7000/modulos/getRam')
@@ -38,12 +39,11 @@ function RamCake({size}) {
                 // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
                 const newData = {
                     labels: [
-                        'Usada (' + ( (size === 1) ? 'KB' : (size === 1024) ? 'MB' : 'GB' ) + ')',
-                        'Libre (' + ( (size === 1) ? 'KB' : (size === 1024) ? 'MB' : 'GB' ) + ')'
+                        'Usada',
+                        'Libre'
                     ],
                     datasets: [{
-                        data: (size === 1) ? [ json.Total - json.Libre, json.Libre] :
-                        [((json.Total - json.Libre)/size).toFixed(2), (json.Libre/size).toFixed(2)],
+                        data: [json.Total - json.Libre, json.Libre],
                         backgroundColor: [
                             '#30475e',
                             '#f05454'
@@ -58,12 +58,13 @@ function RamCake({size}) {
             })
             .catch((error) => console.error(error))
     }
-
+    */
     return (
-        <div style={{ padding: 15 }}>
-            <Doughnut data={data} />
+
+        <div>
+            <Pie data={data} width={400} height={400} />
         </div>
     );
 }
 
-export default RamCake;
+export default PieGraph;
