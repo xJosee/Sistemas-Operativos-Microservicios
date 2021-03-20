@@ -9,14 +9,17 @@ function BarGraph() {
         datasets: [
             {
                 label: 'My First dataset',
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                borderColor: 'rgba(255,99,132,1)',
+                backgroundColor: 'rgba(240, 84, 84, 0.7)',
+                borderColor: 'rgba(48, 71, 94)',
                 borderWidth: 1,
                 hoverBackgroundColor: 'rgba(255,99,132,0.4)',
                 hoverBorderColor: 'rgba(255,99,132,1)',
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: [65, 59, 80, 81, 56, 55, 40],
+
             }
-        ]
+
+        ],
+
     })
 
 
@@ -35,38 +38,52 @@ function BarGraph() {
             .then((json) => {
                 // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
                 const newData = {
-                    labels: [
-                        'Usada',
-                        'Libre'
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                    datasets: [
+                        {
+                            label: 'My First dataset',
+                            backgroundColor: 'rgba(240, 84, 84, 0.7)',
+                            borderColor: 'rgba(48, 71, 94)',
+                            borderWidth: 1,
+                            hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+                            hoverBorderColor: 'rgba(255,99,132,1)',
+                            data: [65, 59, 80, 81, 56, 55, 40],
+                        }
+
                     ],
-                    datasets: [{
-                        data: [json.Total - json.Libre, json.Libre],
-                        backgroundColor: [
-                            '#30475e',
-                            '#f05454'
-                        ],
-                        hoverBackgroundColor: [
-                            '#30475e',
-                            '#f05454'
-                        ]
-                    }]
+
                 }
                 setData(newData)
             })
             .catch((error) => console.error(error))
-    }
-    */
+    }*/
     return (
 
         <div className="row">
-            <input type="range" class="form-range" min="0" max="100" step="10" id="customRange3"></input>
             <div className="col-md-12" style={{ padding: 15, maxHeight: 500, maxWidth: 500 }}>
                 <Bar
                     data={data}
                     width={500}
                     height={500}
                     options={{
-                        maintainAspectRatio: false
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    labelString: 'Persons',
+                                    display: true
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    labelString: 'Ages(Years)',
+                                    display: true
+                                }
+                            }]
+                        },
                     }}
                 />
             </div>

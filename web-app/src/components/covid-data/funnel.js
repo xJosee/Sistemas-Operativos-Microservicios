@@ -1,73 +1,45 @@
-import { useEffect, useState } from 'react';
-import { Bar, Pie } from 'react-chartjs-2';
-import { Form } from 'react-bootstrap'
+import React, { Component } from 'react';
+import FunnelGraph from 'funnel-graph-js/src/js/main'
+import 'funnel-graph-js/src/scss/main.scss';
+import 'funnel-graph-js/src/scss/theme.scss';
+import './style.css'
 
+export default class LineExample extends Component {
+    constructor(props) {
+        super(props);
 
-function FunelGraph() {
-    const [data, setData] = useState({
-        labels: [
-            'Red',
-            'Blue',
-            'Yellow'
-        ],
-        datasets: [{
-            data: [300, 50, 100],
-            backgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
-            ],
-            hoverBackgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
-            ]
-        }]
-    })
-
-
-    /*useEffect(() => {
-        const interval = setInterval(() => {
-
-            fetchValues()
-
-        }, 1500);
-        return () => clearInterval(interval);
-    }, []);
-
-    const fetchValues = () => {
-        fetch('http://34.67.69.50:7000/modulos/getRam')
-            .then((response) => response.json())
-            .then((json) => {
-                // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
-                const newData = {
-                    labels: [
-                        'Usada',
-                        'Libre'
-                    ],
-                    datasets: [{
-                        data: [json.Total - json.Libre, json.Libre],
-                        backgroundColor: [
-                            '#30475e',
-                            '#f05454'
-                        ],
-                        hoverBackgroundColor: [
-                            '#30475e',
-                            '#f05454'
-                        ]
-                    }]
-                }
-                setData(newData)
-            })
-            .catch((error) => console.error(error))
     }
-    */
-    return (
 
-        <div>
-            \
-        </div>
-    );
-}
+    componentDidMount() {
+        var dataExample2 = {
+            labels: ['Impressions 2', 'Add To Cart 2', 'Buy 2'],
+            colors: ['#222831', '#30475e', '#f05454'],
+            values: [12000, 5700, 360]
+        };
 
-export default FunelGraph;
+        var graph = new FunnelGraph({
+            container: '.funnel',
+            gradientDirection: 'vertical',
+            data: dataExample2,
+            displayPercent: false,
+            direction: 'horizontal',
+            width: 700,
+            height: 300,
+            subLabelValue: 'raw'
+        });
+
+        graph.draw();
+    }
+
+    render() {
+        return (
+            <div class="flex">
+                <div class="funnel">
+                </div>
+            </div>
+        );
+    }
+
+
+
+};

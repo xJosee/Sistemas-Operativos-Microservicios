@@ -7,20 +7,17 @@ function PieGraph() {
     const [data, setData] = useState({
         labels: [
             'Red',
-            'Blue',
             'Yellow'
         ],
         datasets: [{
-            data: [300, 50, 100],
+            data: [300, 50],
             backgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
+                '#222831',
+                '#f05454'
             ],
             hoverBackgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
+                '#222831',
+                '#f05454'
             ]
         }]
     })
