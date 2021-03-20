@@ -38,8 +38,8 @@ function RamCake({size}) {
                 // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
                 const newData = {
                     labels: [
-                        'Usada (' + ( (size === 1) ? 'KiB' : (size === 1024) ? 'MiB' : 'GiB' ) + ')',
-                        'Libre (' + ( (size === 1) ? 'KiB' : (size === 1024) ? 'MiB' : 'GiB' ) + ')'
+                        'Usada (' + ( (size === 1) ? 'KB' : (size === 1024) ? 'MB' : 'GB' ) + ')',
+                        'Libre (' + ( (size === 1) ? 'KB' : (size === 1024) ? 'MB' : 'GB' ) + ')'
                     ],
                     datasets: [{
                         data: (size === 1) ? [ json.Total - json.Libre, json.Libre] :

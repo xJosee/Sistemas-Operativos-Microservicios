@@ -28,7 +28,7 @@ export default class LineExample extends Component {
                     yAxes: [
                         {
                             scaleLabel: {
-                                labelString: 'RAM (' + ( (this.props.size === 1) ? 'KiB' : ((this.props.size === 1024) ? 'MiB' : 'GiB' ) ) + ')',
+                                labelString: 'RAM (' + ( (this.props.size === 1) ? 'KB' : ((this.props.size === 1024) ? 'MB' : 'GB' ) ) + ')',
                                 display: true
                             }
                         }
@@ -86,7 +86,7 @@ export default class LineExample extends Component {
         if (this.props.size !== this.size) {
             //Change size
             this.size = this.props.size;
-            this.data.options.scales.yAxes[0].scaleLabel.labelString = 'RAM (' + ( (this.props.size === 1) ? 'KiB' : ((this.props.size === 1024) ? 'MiB' : 'GiB' ) ) + ')';
+            this.data.options.scales.yAxes[0].scaleLabel.labelString = 'RAM (' + ( (this.props.size === 1) ? 'KB' : ((this.props.size === 1024) ? 'MB' : 'GB' ) ) + ')';
             this.data.data.datasets[0].data = []
         }
 
