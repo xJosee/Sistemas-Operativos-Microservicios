@@ -1,0 +1,22 @@
+.label__value{
+    color:#f05454 !important
+}
+
+.funnel {
+    margin: 24px 24px;
+    padding: 24px 24px;
+}   
+
+.flex {
+    display: flex;
+    background-color: rgba(48, 71, 94, 0.1);
+    border-radius: 15px;
+}
+
+.svg-funnel-js__label label-1{
+    margin-top: 100px auto !important;
+}
+
+.label__title{
+    color:#30475e !important
+}
