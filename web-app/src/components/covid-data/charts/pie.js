@@ -76,9 +76,12 @@ function PieGraph() {
     }
 
     return (
-
-        <div>
-            <Pie data={data} width={400} height={400} />
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6">
+                    <Pie data={data} width={400} height={400} />
+                </div>
+            </div>
         </div>
     );
 }

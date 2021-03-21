@@ -26,7 +26,7 @@ function App() {
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <img width="30" height="30" src={logo}></img>
+          <img width="30" height="30" src={logo} ></img>
           <Link className="navbar-brand ml-3" to="/">Covid App</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

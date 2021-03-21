@@ -48,7 +48,7 @@ function BarGraph() {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Rango de edades',
+                            label: 'Cantidad de casos',
                             backgroundColor: 'rgba(240, 84, 84, 0.7)',
                             borderColor: 'rgba(48, 71, 94)',
                             borderWidth: 1,
