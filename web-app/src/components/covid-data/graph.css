@@ -1,0 +1,15 @@
+
+.rotate{
+    
+}
+@media only screen and (max-width: 600px) {
+    .rotate{
+        object-fit: contain;
+        background-size: contain;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}
