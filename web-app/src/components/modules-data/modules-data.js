@@ -9,6 +9,7 @@ import { ButtonGroup, Button } from "react-bootstrap";
 
 function Modules() {
     const [loading, setLoading] = useState(false);
+    const [indexSize, setIndexSize] = useState(0);
     const [size, setSize] = useState(1);
     useEffect(() => {
         setLoading(true);
@@ -18,30 +19,40 @@ function Modules() {
     }, []);
 
     useEffect(() => {
+<<<<<<< HEAD
         setSize(size)
     }, [size])
+=======
+        setSize( (indexSize === 0) ? 1 : (indexSize === 1) ? 1024 : 1024*1024 )
+    },[indexSize])
+>>>>>>> 66e16a812aee65311d849b048c58a79e6ef7547c
 
     const renderPage = () => {
         return (
             <>
                 <style type="text/css">
                     {`
-                        .btn-optionSide {
+                        .btn-optionRAM {
                             background-color: #f05454;
                             color: white;
                         }
 
-                        .btn-optionCenter {
-                            background-color: #30475e;
-                            color: white;
+                        .btn-optionRAM:hover {
+                            color: #30475e;
                         }
 
-                        .btn-optionCenter:hover {
+                        .btn-optionRAMActive {
+                            background-color: #30475e;
                             color: #f05454;
+                        }
+
+                        .btn-optionRAMActive:hover {
+                            color: white;
                         }
                     `}
                 </style>
 
+<<<<<<< HEAD
                 <div className="container">
                     <div className="row">
                         <div className="col-md-2 mx-auto" align="center">
@@ -51,6 +62,15 @@ function Modules() {
                                 <Button variant="optionSide" onClick={() => { setSize(1024 * 1024) }}>GB</Button>
                             </ButtonGroup>
                         </div>
+=======
+                <div className="row">
+                    <div className="col-md-2 mx-auto" align="center">
+                        <ButtonGroup style={{ paddingTop: 10 }}>
+                            <Button variant={ (indexSize === 0) ? "optionRAMActive" : "optionRAM" } onClick={() => {setIndexSize(0)}}>KB</Button>
+                            <Button variant={ (indexSize === 1) ? "optionRAMActive" : "optionRAM" } active onClick={() => {setIndexSize(1)}}>MB</Button>
+                            <Button variant={ (indexSize === 2) ? "optionRAMActive" : "optionRAM" } active onClick={() => {setIndexSize(2)}}>GB</Button>
+                        </ButtonGroup>
+>>>>>>> 66e16a812aee65311d849b048c58a79e6ef7547c
                     </div>
                     <div className="row">
                         <div className="col-md-6" >
