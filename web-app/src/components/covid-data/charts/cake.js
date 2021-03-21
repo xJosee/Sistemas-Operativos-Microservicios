@@ -5,21 +5,21 @@ import { Doughnut } from 'react-chartjs-2';
 function CakeGraph() {
     const [data, setData] = useState({
         labels: [
-            ''
+            '', '', ''
         ],
         datasets: [{
-            data: [0],
+            data: [100, 100, 100],
             backgroundColor: [
                 '#222831',
                 '#dddddd',
+                '#f05454',
                 '#30475e',
-                '#f05454'
             ],
             hoverBackgroundColor: [
                 '#222831',
                 '#dddddd',
+                '#f05454',
                 '#30475e',
-                '#f05454'
             ]
         }]
     })
