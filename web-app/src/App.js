@@ -21,7 +21,8 @@ function App() {
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link className="navbar-brand ml-3" to="/">Covid-App Cloud</Link>
+          <img width="30" height="30" src="https://www.flaticon.es/svg/vstatic/svg/2785/2785819.svg?token=exp=1616267993~hmac=c28c48c1d9ce396ff19c96d433fd337b"></img>
+          <Link className="navbar-brand ml-3" to="/">Covid App</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

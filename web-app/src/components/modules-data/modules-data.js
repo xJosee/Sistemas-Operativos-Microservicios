@@ -19,7 +19,7 @@ function Modules() {
 
     useEffect(() => {
         setSize(size)
-    },[size])
+    }, [size])
 
     const renderPage = () => {
         return (
@@ -42,26 +42,28 @@ function Modules() {
                     `}
                 </style>
 
-                <div className="row">
-                    <div className="col-md-2 mx-auto" align="center">
-                        <ButtonGroup style={{ paddingTop: 10 }}>
-                            <Button variant="optionSide" onClick={() => {setSize(1)}}>KB</Button>
-                            <Button variant="optionCenter" onClick={() => {setSize(1024)}}>MB</Button>
-                            <Button variant="optionSide" onClick={() => {setSize(1024*1024)}}>GB</Button>
-                        </ButtonGroup>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-2 mx-auto" align="center">
+                            <ButtonGroup style={{ paddingTop: 10 }}>
+                                <Button variant="optionSide" onClick={() => { setSize(1) }}>KB</Button>
+                                <Button variant="optionCenter" onClick={() => { setSize(1024) }}>MB</Button>
+                                <Button variant="optionSide" onClick={() => { setSize(1024 * 1024) }}>GB</Button>
+                            </ButtonGroup>
+                        </div>
                     </div>
-                </div> 
-                <div className="row">
-                    <div className="col-md-6" >
-                        <LineExample size={size} />
+                    <div className="row">
+                        <div className="col-md-6" >
+                            <LineExample size={size} />
+                        </div>
+                        <div className="col-md-6">
+                            <RamCake size={size} />
+                        </div>
                     </div>
-                    <div className="col-md-6">
-                        <RamCake size={size} />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        <Proc />
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Proc />
+                        </div>
                     </div>
                 </div>
             </>
@@ -80,7 +82,7 @@ function Modules() {
     return (
         <>
             {loading ? renderLoader() : null}
-            { renderPage()}
+            {renderPage()}
         </>
     );
 }
