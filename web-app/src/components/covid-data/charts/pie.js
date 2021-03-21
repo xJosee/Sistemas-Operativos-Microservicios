@@ -1,29 +1,33 @@
 import { useEffect, useState } from 'react';
-import { Bar, Pie } from 'react-chartjs-2';
-import { Form } from 'react-bootstrap'
+import { Pie } from 'react-chartjs-2';
 
 
 function PieGraph() {
     const [data, setData] = useState({
         labels: [
-            'Red',
-            'Yellow'
+            'symptomatic',
+            'asymptomatic'
         ],
         datasets: [{
-            data: [300, 50],
+            data: [50, 50],
             backgroundColor: [
+                '#30475e',
+                '#f05454',
                 '#222831',
-                '#f05454'
+                '#dddddd'
+
             ],
             hoverBackgroundColor: [
+                '#30475e',
+                '#f05454',
                 '#222831',
-                '#f05454'
+                '#dddddd'
             ]
         }]
     })
 
 
-    /*useEffect(() => {
+    useEffect(() => {
         const interval = setInterval(() => {
 
             fetchValues()
@@ -33,24 +37,36 @@ function PieGraph() {
     }, []);
 
     const fetchValues = () => {
-        fetch('http://34.67.69.50:7000/modulos/getRam')
+        fetch('http://34.67.69.50:7000/state')
             .then((response) => response.json())
             .then((json) => {
-                // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
+                let labels = []
+                json.forEach(value => {
+                    labels.push(value._id)
+                });
+                let count = []
+                let total = 0
+                json.forEach(value => {
+                    total += value.count
+                });
+                json.forEach(value => {
+                    count.push((value.count / total * 100).toFixed(2))
+                });
                 const newData = {
-                    labels: [
-                        'Usada',
-                        'Libre'
-                    ],
+                    labels: labels,
                     datasets: [{
-                        data: [json.Total - json.Libre, json.Libre],
+                        data: count,
                         backgroundColor: [
                             '#30475e',
-                            '#f05454'
+                            '#f05454',
+                            '#222831',
+                            '#dddddd'
                         ],
                         hoverBackgroundColor: [
                             '#30475e',
-                            '#f05454'
+                            '#f05454',
+                            '#222831',
+                            '#dddddd'
                         ]
                     }]
                 }
@@ -58,7 +74,7 @@ function PieGraph() {
             })
             .catch((error) => console.error(error))
     }
-    */
+
     return (
 
         <div>
