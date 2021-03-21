@@ -75,8 +75,12 @@ function CakeGraph() {
     }
 
     return (
-        <div>
-            <Doughnut data={data} width={500} height={500} />
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6">
+                    <Doughnut data={data} width={500} height={500} />
+                </div>
+            </div>
         </div>
     );
 }

@@ -63,8 +63,8 @@ export default class LineExample extends Component {
 
     render() {
         return (
-            <div class="flex">
-                <div class="funnel">
+            <div className="flex">
+                <div className="funnel">
                 </div>
             </div>
         );

@@ -65,33 +65,35 @@ function BarGraph() {
     }
     return (
 
-        <div className="row">
-            <div className="col-md-12" style={{ padding: 15, maxHeight: 500, maxWidth: 500 }}>
-                <Bar
-                    data={data}
-                    width={500}
-                    height={500}
-                    options={{
-                        maintainAspectRatio: false,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                },
-                                scaleLabel: {
-                                    labelString: 'Persons',
-                                    display: true
-                                }
-                            }],
-                            xAxes: [{
-                                scaleLabel: {
-                                    labelString: 'Ages (Years)',
-                                    display: true
-                                }
-                            }]
-                        },
-                    }}
-                />
+        <div className="container">
+            <div className="row">
+                <div className="col-md-12" style={{ padding: 15, maxHeight: 500, maxWidth: 500 }}>
+                    <Bar
+                        data={data}
+                        width={500}
+                        height={500}
+                        options={{
+                            maintainAspectRatio: false,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    },
+                                    scaleLabel: {
+                                        labelString: 'Persons',
+                                        display: true
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        labelString: 'Ages (Years)',
+                                        display: true
+                                    }
+                                }]
+                            },
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );

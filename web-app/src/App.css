@@ -24,7 +24,6 @@
   transform: translate(-50%,-50%);
   width: 100%;
   text-align: center;
-  overflow: hidden;
 }
 
 .covid-data{
@@ -60,8 +59,4 @@
 h1{
   position: absolute;
   font-weight: 600;
-}
-
-h5,h3{
-  overflow: hidden;
 }

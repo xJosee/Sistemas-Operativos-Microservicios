@@ -19,13 +19,8 @@ function Modules() {
     }, []);
 
     useEffect(() => {
-<<<<<<< HEAD
-        setSize(size)
-    }, [size])
-=======
-        setSize( (indexSize === 0) ? 1 : (indexSize === 1) ? 1024 : 1024*1024 )
-    },[indexSize])
->>>>>>> 66e16a812aee65311d849b048c58a79e6ef7547c
+        setSize((indexSize === 0) ? 1 : (indexSize === 1) ? 1024 : 1024 * 1024)
+    }, [indexSize])
 
     const renderPage = () => {
         return (
@@ -52,25 +47,15 @@ function Modules() {
                     `}
                 </style>
 
-<<<<<<< HEAD
                 <div className="container">
                     <div className="row">
                         <div className="col-md-2 mx-auto" align="center">
                             <ButtonGroup style={{ paddingTop: 10 }}>
-                                <Button variant="optionSide" onClick={() => { setSize(1) }}>KB</Button>
-                                <Button variant="optionCenter" onClick={() => { setSize(1024) }}>MB</Button>
-                                <Button variant="optionSide" onClick={() => { setSize(1024 * 1024) }}>GB</Button>
+                                <Button variant={(indexSize === 0) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(0) }}>KB</Button>
+                                <Button variant={(indexSize === 1) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(1) }}>MB</Button>
+                                <Button variant={(indexSize === 2) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(2) }}>GB</Button>
                             </ButtonGroup>
                         </div>
-=======
-                <div className="row">
-                    <div className="col-md-2 mx-auto" align="center">
-                        <ButtonGroup style={{ paddingTop: 10 }}>
-                            <Button variant={ (indexSize === 0) ? "optionRAMActive" : "optionRAM" } onClick={() => {setIndexSize(0)}}>KB</Button>
-                            <Button variant={ (indexSize === 1) ? "optionRAMActive" : "optionRAM" } active onClick={() => {setIndexSize(1)}}>MB</Button>
-                            <Button variant={ (indexSize === 2) ? "optionRAMActive" : "optionRAM" } active onClick={() => {setIndexSize(2)}}>GB</Button>
-                        </ButtonGroup>
->>>>>>> 66e16a812aee65311d849b048c58a79e6ef7547c
                     </div>
                     <div className="row">
                         <div className="col-md-6" >
@@ -86,6 +71,7 @@ function Modules() {
                         </div>
                     </div>
                 </div>
+
             </>
         );
     }
