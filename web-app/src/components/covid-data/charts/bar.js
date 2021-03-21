@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 function BarGraph() {
     const [data, setData] = useState({
@@ -19,7 +19,13 @@ function BarGraph() {
         ],
     })
 
-
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    }, []);
     useEffect(() => {
         const interval = setInterval(() => {
             fetchValues()
@@ -63,39 +69,57 @@ function BarGraph() {
             })
             .catch((error) => console.error(error))
     }
-    return (
 
-        <div className="container">
-            <div className="row">
-                <div className="col-md-12" style={{ padding: 15, maxHeight: 500, maxWidth: 500 }}>
-                    <Bar
-                        data={data}
-                        width={500}
-                        height={500}
-                        options={{
-                            maintainAspectRatio: false,
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    },
-                                    scaleLabel: {
-                                        labelString: 'Persons',
-                                        display: true
-                                    }
-                                }],
-                                xAxes: [{
-                                    scaleLabel: {
-                                        labelString: 'Ages (Years)',
-                                        display: true
-                                    }
-                                }]
-                            },
-                        }}
-                    />
+    const renderLoader = () => {
+        return (
+            <div className="wrapper">
+                <h1 className="title">Covid App</h1>
+                <ClipLoader color={"#000"} loading={loading} size={40} />
+            </div>
+        );
+    }
+
+    const renderPage = () => {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12" style={{ padding: 15, maxHeight: 500, maxWidth: 500 }}>
+                        <Bar
+                            data={data}
+                            width={500}
+                            height={500}
+                            options={{
+                                maintainAspectRatio: false,
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        },
+                                        scaleLabel: {
+                                            labelString: 'Persons',
+                                            display: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        scaleLabel: {
+                                            labelString: 'Ages (Years)',
+                                            display: true
+                                        }
+                                    }]
+                                },
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
+        );
+    }
+
+    return (
+        <>
+            {loading ? renderLoader() : null}
+            {renderPage()}
+        </>
     );
 }
 

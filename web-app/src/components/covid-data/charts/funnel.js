@@ -5,6 +5,7 @@ import 'funnel-graph-js/src/scss/theme.scss';
 import './style.css'
 
 export default class LineExample extends Component {
+
     constructor(props) {
         super(props);
         this.timer = null;

@@ -25,10 +25,10 @@ function App() {
   const renderPage = () => {
     return (
       <Router>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <img width="30" height="30" src={logo} ></img>
+        <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+          <img width="30" height="30" src={logo}></img>
           <Link className="navbar-brand ml-3" to="/">Covid App</Link>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
+          <button className="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbar">
@@ -40,8 +40,8 @@ function App() {
                 <div class="dropdown-menu" aria-labelledby="covid">
                   <Link className="dropdown-item" to="/rango-edades">Rango de edades</Link>
                   <Link className="dropdown-item" to="/top5-departamentos">Top 5 departamentos</Link>
-                  <Link className="dropdown-item" to="/filter-state">Filtrodo por state</Link>
-                  <Link className="dropdown-item" to="/filter-infected-type">Filtrodo por infectedType</Link>
+                  <Link className="dropdown-item" to="/filter-state">Filtrado por state</Link>
+                  <Link className="dropdown-item" to="/filter-infected-type">Filtrado por infectedType</Link>
                 </div>
               </li>
               <Link className="nav-item nav-link" to="/modules">Modules</Link>

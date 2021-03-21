@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 function CakeGraph() {
     const [data, setData] = useState({
@@ -24,7 +24,13 @@ function CakeGraph() {
         }]
     })
 
-
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    }, []);
     useEffect(() => {
         const interval = setInterval(() => {
 
@@ -74,15 +80,34 @@ function CakeGraph() {
             .catch((error) => console.error(error))
     }
 
-    return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6">
-                    <Doughnut data={data} width={500} height={500} />
+    const renderLoader = () => {
+        return (
+            <div className="wrapper">
+                <h1 className="title">Covid App</h1>
+                <ClipLoader color={"#000"} loading={loading} size={40} />
+            </div>
+        );
+    }
+
+    const renderPage = () => {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
+                        <Doughnut data={data} width={500} height={500} />
+                    </div>
                 </div>
             </div>
-        </div>
+        );
+    }
+
+    return (
+        <>
+            {loading ? renderLoader() : null}
+            {renderPage()}
+        </>
     );
+
 }
 
 export default CakeGraph;

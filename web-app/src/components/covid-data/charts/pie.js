@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function PieGraph() {
@@ -26,6 +27,13 @@ function PieGraph() {
         }]
     })
 
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    }, []);
 
     useEffect(() => {
 
@@ -74,19 +82,32 @@ function PieGraph() {
             .catch((error) => console.error(error))
     }
 
-    return (
-<<<<<<< HEAD
-=======
+    const renderLoader = () => {
+        return (
+            <div className="wrapper">
+                <h1 className="title">Covid App</h1>
+                <ClipLoader color={"#000"} loading={loading} size={40} />
+            </div>
+        );
+    }
 
->>>>>>> 49e642fef991ae9523b3943932cc437f4da31301
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6">
-                    <Pie data={data} width={400} height={400} />
+    const renderPage = () => {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
+                        <Pie data={data} width={400} height={400} />
+                    </div>
                 </div>
             </div>
-        </div>
+        );
+    }
 
+    return (
+        <>
+            {loading ? renderLoader() : null}
+            {renderPage()}
+        </>
     );
 }
 
