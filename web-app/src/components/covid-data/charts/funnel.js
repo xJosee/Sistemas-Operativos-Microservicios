@@ -63,8 +63,11 @@ export default class LineExample extends Component {
 
     render() {
         return (
-            <div className="flex">
-                <div className="funnel">
+
+            <div className="mt-5">
+                <div className="flex">
+                    <div className="funnel">
+                    </div>
                 </div>
             </div>
         );

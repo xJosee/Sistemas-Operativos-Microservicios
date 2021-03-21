@@ -28,11 +28,10 @@ function PieGraph() {
 
 
     useEffect(() => {
+
         const interval = setInterval(() => {
-
             fetchValues()
-
-        }, 1500);
+        }, 1000);
         return () => clearInterval(interval);
     }, []);
 
@@ -77,9 +76,14 @@ function PieGraph() {
 
     return (
 
-        <div>
-            <Pie data={data} width={400} height={400} />
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6">
+                    <Pie data={data} width={400} height={400} />
+                </div>
+            </div>
         </div>
+
     );
 }
 

@@ -9,8 +9,10 @@
 
 .flex {
     display: flex;
-    background-color: rgba(48, 71, 94, 0.1);
     border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .svg-funnel-js__label label-1{
