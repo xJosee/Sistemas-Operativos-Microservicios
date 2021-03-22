@@ -1,7 +1,9 @@
 # NATS
+Es un servicio de mensajería ocupado principalmente en aplicaciones nativas de la nube.
+## Manual Técnico
+### Docker Compose
 Como sabemos NATS es un servicio especializado de mensajeria, al igual que este concepto tenemos la siguiente composición de **Docker Compose**
-
-```
+```yml
 version: "3.3"
 services:
   server-nats:
@@ -20,10 +22,44 @@ services:
       depends_on:
         - server-nats
 ```
+### Subscriber (subscribe.go)
+```go
+func main()
+```
+Esta función escucha a lo largo del asunto *byNATS* del servidor de NATS, mensajes provenientes del Publisher, luego de recibirlos este se los envía a través de un solicitud HTTP al servidor que almacenara los datos.
+Debido a la necesidad de que se pudieran recibir mensajes de parte del Publisher, este paquete se instauro como **main** para poder realizarlo sin ninguna complicación.
+```go
+func showError(err error, msg string)
+```
+Está función se encarga de mostrar en la consola, cuando se produzca un error.
 
+*Parámetros:*
+- *err*: es el posible que se genero
+- *msg*: es el mensaje de la operación que causo el posible error
+### Publisher (publish.go)
+```go
+func main()
+```
+En esta función se inicia el servicio para escuchar mensajes provenientes de una solicitud HTTP.
+Debido a la necesidad de que se pudieran recibir mensajes de parte de una solicitud HTTP, este paquete se instauro como **main** para poder realizarlo sin ninguna complicación.
+```go
+func startListening()
+```
+Está función se encarga de iniciar el servicio para solicitudes HTTP, configurando para esto una ruta donde se podrá recibir dichas solicitudes y colocando el puerto donde se escuchara como **3000**
+```go
+func showError(err error, msg string)
+```
+Está función se encarga de mostrar en la consola, cuando se produzca un error.
 
-## Ejecución
+*Parámetros:*
+- *err*: es el posible que se genero
+- *msg*: es el mensaje de la operación que causo el posible error
+```go
+func newPatient(wr http.ResponseWriter, r *http.Request)
+```
+Está función se encarga de recibir las solicitudes HTTP de pacientes provinientes del tráfico y se encarga de enviar los nuevos pacientes a través del asunto *byNATS* del servidor de NATS.
 
+## Manual de usuario
 - Para iniciar la composición debe de ejecutar:
 
 ```
@@ -37,7 +73,7 @@ docker-compose up --build
 ```
 docker-compose build
 ```
-- Para detener la ejecucion, bastara con:
+- Para detener la ejecución, bastara con:
 ```
 ^C
 ```
