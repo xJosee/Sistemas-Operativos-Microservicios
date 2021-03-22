@@ -6,7 +6,7 @@ import json
 indexPatient = 0
 
 def loadTraffic() -> List:
-    with open('traffic.json') as tFile:          
+    with open('traffic.json',mode="r", encoding='utf-8') as tFile:          
         return json.load(tFile)
 
 #List with patients
