@@ -12,7 +12,7 @@ Es una herramienta para poder simular tráfico en proyectos
 ## Manual Técnico
 ### Registro de pacientes
 Antes de poder ejecutar el tráfico configurado, debemos de contar con el archivo *traffic.json* que cuenta con el formato:
-```
+```json
 [
     {
         "name": "Francisco Suarez",
