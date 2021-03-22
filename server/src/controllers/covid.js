@@ -69,6 +69,18 @@ module.exports = {
                         {
                             $count: "count"
                         }
+                    ],
+                    sin_region: [
+                        {
+                            $match: {
+                                location: {
+                                    $and: [{ $not: { $in: peten } }, { $not: { $in: franja_transversal_del_norte } }, { $not: { $in: oriente } }, { $not: { $in: litoral_del_pacifico } }]
+                                }
+                            }
+                        },
+                        {
+                            $count: "count"
+                        }
                     ]
                 }
             }
