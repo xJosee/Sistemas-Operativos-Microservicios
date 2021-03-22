@@ -12,6 +12,8 @@ import CakeGraph from './components/covid-data/charts/cake';
 import BarGraph from './components/covid-data/charts/bar'
 import PieGraph from './components/covid-data/charts/pie'
 import FilterData from './components/covid-data/tables/filter-data';
+import LastData from './components/covid-data/tables/last-data';
+import Region from './components/covid-data/maps/region';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -25,10 +27,10 @@ function App() {
   const renderPage = () => {
     return (
       <Router>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
           <img width="30" height="30" src={logo}></img>
           <Link className="navbar-brand ml-3" to="/">Covid App</Link>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
+          <button className="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbar">
@@ -40,9 +42,11 @@ function App() {
                 <div class="dropdown-menu" aria-labelledby="covid">
                   <Link className="dropdown-item" to="/rango-edades">Rango de edades</Link>
                   <Link className="dropdown-item" to="/top5-departamentos">Top 5 departamentos</Link>
-                  <Link className="dropdown-item" to="/filter-state">Filtrodo por state</Link>
-                  <Link className="dropdown-item" to="/filter-infected-type">Filtrodo por infectedType</Link>
-                  <Link className="dropdown-item" to="/filter-data">Data</Link>
+                  <Link className="dropdown-item" to="/filter-state">Filtrado por state</Link>
+                  <Link className="dropdown-item" to="/filter-infected-type">Filtrado por infectedType</Link>
+                  <Link className="dropdown-item" to="/filter-data">Filtraro por Middleware</Link>
+                  <Link className="dropdown-item" to="/last-data">Ultimos 5 registrados</Link>
+                  <Link className="dropdown-item" to="/region">Region</Link>
                 </div>
               </li>
               <Link className="nav-item nav-link" to="/modules">Modules</Link>
@@ -54,11 +58,13 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/modules" component={Modules} />
           <Route path="/about" component={About} />
-          <Route path="/rango-edades" component={FunnelGraph} />
-          <Route path="/top5-departamentos" component={BarGraph} />
+          <Route path="/rango-edades" component={BarGraph} />
+          <Route path="/top5-departamentos" component={FunnelGraph} />
           <Route path="/filter-state" component={PieGraph} />
           <Route path="/filter-infected-type" component={CakeGraph} />
           <Route exact path="/filter-data" component={FilterData} />
+          <Route exact path="/last-data" component={LastData} />
+          <Route exact path="/region" component={Region} />
         </Switch>
       </Router>
     );

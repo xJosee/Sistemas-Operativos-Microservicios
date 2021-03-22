@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import FunnelGraph from 'funnel-graph-js/src/js/main'
 import 'funnel-graph-js/src/scss/main.scss';
 import 'funnel-graph-js/src/scss/theme.scss';
+import './graph.css'
 import './style.css'
 
 export default class LineExample extends Component {
+
     constructor(props) {
         super(props);
         this.timer = null;
@@ -63,10 +65,16 @@ export default class LineExample extends Component {
 
     render() {
         return (
-
-            <div className="mt-5">
-                <div className="flex">
-                    <div className="funnel">
+            <div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <h1 style={{ paddingTop: 25, paddingBottom: 5 }}>Top 5 departamentos con mayor cantidad de casos</h1>
+                    </div>
+                </div>
+                <div>
+                    <div className="flex rotate">
+                        <div className="funnel">
+                        </div>
                     </div>
                 </div>
             </div>

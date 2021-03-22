@@ -53,6 +53,7 @@ export default class LineExample extends Component {
     componentDidMount() {
         const ctx = document.getElementById('graph');
         this.chart = new Chart(ctx, this.data);
+
         this.timer = setInterval(() => this.fetchValues(), 1500);
     }
 

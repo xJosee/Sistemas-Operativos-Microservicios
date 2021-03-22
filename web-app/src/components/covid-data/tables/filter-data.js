@@ -1,4 +1,4 @@
-import { Component, useEffect, useState } from "react";
+import { Component } from "react";
 import { Button, ButtonGroup } from "react-bootstrap";
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -12,7 +12,7 @@ class FilterData extends Component {
             { dataField: "name", text: "Nombre", sort: true },
             { dataField: "age", text: "Edad", sort: true },
             { dataField: "location", text: "Ubicación", sort: true },
-            { dataField: "state", text: "Estado", sort: true }, ,
+            { dataField: "state", text: "Estado", sort: true },
             { dataField: "infectedtype", text: "Tipo", sort: true }
         ]
     }
@@ -20,14 +20,19 @@ class FilterData extends Component {
         fetch('http://34.67.69.50:7000/way/' + this.state.way)
             .then((response) => response.json())
             .then((json) => this.setState({ patients: json }))
+        this.timer = setInterval(() => this.fetchValues(), 1500);
     }
 
     componentDidUpdate(prevprops, prevstate) {
-        if (prevstate.way != this.state.way) {
-            fetch('http://34.67.69.50:7000/way/' + this.state.way)
-                .then((response) => response.json())
-                .then((json) => this.setState({ patients: json }))
+        if (prevstate.way !== this.state.way) {
+            this.fetchValues()
         }
+    }
+
+    fetchValues() {
+        fetch('http://34.67.69.50:7000/way/' + this.state.way)
+            .then((response) => response.json())
+            .then((json) => this.setState({ patients: json }))
     }
 
     setWay(index) {
@@ -53,7 +58,6 @@ class FilterData extends Component {
 
     render() {
         const options = {
-            // pageStartIndex: 0,
             sizePerPage: 8,
             hideSizePerPage: true,
             hidePageListOnlyOnePage: true
