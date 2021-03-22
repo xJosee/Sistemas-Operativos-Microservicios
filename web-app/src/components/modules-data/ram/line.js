@@ -6,16 +6,16 @@ export default class LineExample extends Component {
     constructor(props) {
         super(props);
         this.chart = Chart;
-        this.timer = null;
-        this.state = { value: 2000000 }
-        this.size = props.size;
+        //this.timer = null;
+        //this.state = { value: 2000000 }
+
         this.data = {
             type: 'line',
             data: {
                 labels: ['7.5', '6.0', '4.5', '3.0', '1.5', '0'],
                 datasets: [
                     {
-                        label: 'RAM in time',
+                        label: 'RAM Usada',
                         data: [],
                         backgroundColor: 'rgba(240, 84, 84, 0.8)',
                         borderColor: 'rgba(48, 71, 94)',
@@ -36,7 +36,7 @@ export default class LineExample extends Component {
                     xAxes: [
                         {
                             scaleLabel: {
-                                labelString: 'Time (Seconds)',
+                                labelString: 'Tiempo (Segundos)',
                                 display: true
                             }
                         }
@@ -48,12 +48,22 @@ export default class LineExample extends Component {
 
     }
 
-
-
-    componentDidMount() {
-        const ctx = document.getElementById('graph');
-        this.chart = new Chart(ctx, this.data);
-        this.timer = setInterval(() => this.fetchValues(), 1500);
+    componentDidUpdate(prevProps, prevState) {
+        //Change size
+        if (prevProps.size !== this.props.size) {
+            this.size = this.props.size;
+            this.data.options.scales.yAxes[0].scaleLabel.labelString = 'RAM (' + ((this.props.size === 1) ? 'KB' : ((this.props.size === 1024) ? 'MB' : 'GB')) + ')';
+            this.data.data.datasets[0].data = []
+        }
+        
+        if(prevProps.libre !== this.props.libre) {
+            this.data.data.datasets[0].data.push((this.props.size === 1) ? this.props.total - this.props.libre : (this.props.size === 1024) ? ((this.props.total - this.props.libre) / this.props.size).toFixed(2) : ((this.props.total - this.props.libre) / this.props.size).toFixed(5));
+            if (this.data.data.datasets[0].data.length >= 7) {
+                this.data.data.datasets[0].data.shift()
+            }
+            this.chart.update();
+        }
+        
     }
 
     render() {
@@ -64,36 +74,8 @@ export default class LineExample extends Component {
         );
     }
 
-    componentWillUnmount() {
-        clearInterval(this.timer);
+    componentDidMount() {
+        const ctx = document.getElementById('graph');
+        this.chart = new Chart(ctx, this.data);
     }
-
-
-    fetchValues = () => {
-        this.setState({ ...this.state, updatable: false });
-        fetch('http://34.67.69.50:7000/modulos/getRam  ')
-            .then((response) => response.json())
-            .then((json) => {
-                this.setState({ value: (this.props.size === 1) ? json.Total - json.Libre : (this.props.size === 1024) ? ((json.Total - json.Libre) / this.props.size).toFixed(2) : ((json.Total - json.Libre) / this.props.size).toFixed(5) });
-                this.setValues()
-                this.chart.update();
-            })
-            .catch((error) => console.error(error))
-    };
-
-    setValues() {
-
-        if (this.props.size !== this.size) {
-            //Change size
-            this.size = this.props.size;
-            this.data.options.scales.yAxes[0].scaleLabel.labelString = 'RAM (' + ((this.props.size === 1) ? 'KB' : ((this.props.size === 1024) ? 'MB' : 'GB')) + ')';
-            this.data.data.datasets[0].data = []
-        }
-
-        this.data.data.datasets[0].data.push(this.state.value);
-        if (this.data.data.datasets[0].data.length >= 7) {
-            this.data.data.datasets[0].data.shift()
-        }
-    }
-
 };
