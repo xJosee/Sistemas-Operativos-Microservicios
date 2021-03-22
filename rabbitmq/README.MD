@@ -1,5 +1,14 @@
+## Contenido
+- [RabbitMQ](#rabbitmq)
+  * [Manual Técnico](#manual-técnico)
+    + [Docker Compose](#docker-compose)
+    + [Consumer](#consumer)
+    + [Publisher](#publisher)
+  * [Manual de usuario](#manual-de-usuario)
+
 # RabbitMQ
 Según la misma descripción que da RabbitMQ, como su rol en el servicio de mensajeria este dice ser tanto el cartero, la oficina de correos y el buzón.
+
 ## Manual Técnico
 ### Docker Compose
 Según el concepto dado anteriormente, utilizamos un **Docker Compose** para poder representar siendo el *server-rmq(Oficina de correos)*, *publisher-rmq(Cartero)* y *consumer-rmq(Buzón)*:
@@ -24,7 +33,8 @@ services:
       depends_on:
         - server-rmq
 ```
-### Consumer (receive.go)
+### Consumer
+#### Método
 ```go
 func main()
 ```
@@ -38,7 +48,21 @@ Está función se encarga de mostrar en la consola, cuando se produzca un error.
 *Parámetros:*
 - *err*: es el posible que se genero
 - *msg*: es el mensaje de la operación que causo el posible error
-### Publisher (send.go)
+#### Dockerfile
+Para poder crear de mejor manera el contenedor, se opto por volver el paquete, un modulo para la correcta instalación de las dependencias del paquete
+```Dockerfile
+FROM golang
+
+WORKDIR /
+
+COPY . .
+
+RUN go mod download
+
+CMD ["go", "run", "receive.go"]
+```
+### Publisher
+#### Método
 ```go
 func main()
 ```
@@ -61,7 +85,19 @@ func newPatient(wr http.ResponseWriter, r *http.Request)
 ```
 Está función se encarga de recibir las solicitudes HTTP de pacientes provinientes del tráfico y se encarga de enviar los nuevos pacientes a través del canal *byRabbit* del servidor de RabbitMQ.
 
+#### Dockerfile
+Para poder crear de mejor manera el contenedor, se opto por volver el paquete, un modulo para la correcta instalación de las dependencias del paquete
+```Dockerfile
+FROM golang
 
+WORKDIR /
+
+COPY . .
+
+RUN go mod download
+
+CMD ["go", "run", "send.go"]
+```
 ## Manual de usuario
 
 - Para iniciar la composición debe de ejecutar:

@@ -1,5 +1,13 @@
+## Contenido
+- [NATS](#nats)
+  * [Manual Técnico](#manual-técnico)
+    + [Docker Compose](#docker-compose)
+    + [Subscriber](#subscriber)
+    + [Publisher](#publisher)
+  * [Manual de usuario](#manual-de-usuario)
 # NATS
 Es un servicio de mensajería ocupado principalmente en aplicaciones nativas de la nube.
+
 ## Manual Técnico
 ### Docker Compose
 Como sabemos NATS es un servicio especializado de mensajeria, al igual que este concepto tenemos la siguiente composición de **Docker Compose**
@@ -22,7 +30,8 @@ services:
       depends_on:
         - server-nats
 ```
-### Subscriber (subscribe.go)
+### Subscriber
+#### Funciones
 ```go
 func main()
 ```
@@ -36,7 +45,21 @@ Está función se encarga de mostrar en la consola, cuando se produzca un error.
 *Parámetros:*
 - *err*: es el posible que se genero
 - *msg*: es el mensaje de la operación que causo el posible error
-### Publisher (publish.go)
+#### Dockerfile
+Para poder crear de mejor manera el contenedor, se opto por volver el paquete, un modulo para la correcta instalación de las dependencias del paquete
+```Dockerfile
+FROM golang
+
+WORKDIR /
+
+COPY . .
+
+RUN go mod download
+
+CMD ["go", "run", "subscribe.go"]
+```
+### Publisher
+#### Funciones
 ```go
 func main()
 ```
@@ -58,7 +81,19 @@ Está función se encarga de mostrar en la consola, cuando se produzca un error.
 func newPatient(wr http.ResponseWriter, r *http.Request)
 ```
 Está función se encarga de recibir las solicitudes HTTP de pacientes provinientes del tráfico y se encarga de enviar los nuevos pacientes a través del asunto *byNATS* del servidor de NATS.
+#### Dockerfile
+Para poder crear de mejor manera el contenedor, se opto por volver el paquete, un modulo para la correcta instalación de las dependencias del paquete
+```Dockerfile
+FROM golang
 
+WORKDIR /
+
+COPY . .
+
+RUN go mod download
+
+CMD ["go", "run", "publish.go"]
+```
 ## Manual de usuario
 - Para iniciar la composición debe de ejecutar:
 
