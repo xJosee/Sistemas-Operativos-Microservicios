@@ -27,21 +27,33 @@ class Region extends Component {
         if (prevstate.region != this.state.region) {
             switch (this.state.region) {
                 case 'Peten':
-                    this.setState({ poligono: polygons.peten, color: '#30475e' })
+                    this.setState({ poligono: polygons.peten, color: '#425895' })
                     break;
-                case 'Franja':
-                    this.setState({ poligono: polygons.franja, color: '#f05454' })
+                case 'Metro':
+                    this.setState({ poligono: polygons.metropolitana, color: '#429295' })
                     break;
-                case 'Oriente':
-                    this.setState({ poligono: polygons.oriente, color: '#222831' })
-                    break;
-
-                case 'Litoral':
-                    this.setState({ poligono: polygons.litoral, color: '#957842' })
+                case 'Central':
+                    this.setState({ poligono: polygons.central, color: '#E16706' })
                     break;
 
-                case 'Sin Region':
-                    this.setState({ poligono: polygons.sinregion, color: '#429566' })
+                case 'Norte':
+                    this.setState({ poligono: polygons.norte, color: '#E0E00A' })
+                    break;
+
+                case 'Nororiente':
+                    this.setState({ poligono: polygons.nororiente, color: '#E00A2E' })
+                    break;
+                case 'Suroriente':
+                    this.setState({ poligono: polygons.suroriente, color: '#E877FE' })
+                    break;
+
+
+                case 'Suroccidente':
+                    this.setState({ poligono: polygons.suroccidente, color: '#98938F' })
+                    break;
+
+                case 'Todos':
+                    this.setState({ poligono: polygons.suroccidente, color: '#' })
                     break;
 
                 default:
@@ -81,19 +93,27 @@ class Region extends Component {
                 this.setState({ region: 'Peten' })
                 break;
             case 1:
-                this.setState({ region: 'Franja' })
+                this.setState({ region: 'Metro' })
                 break;
             case 2:
-                this.setState({ region: 'Oriente' })
+                this.setState({ region: 'Central' })
                 break;
 
             case 3:
-                this.setState({ region: 'Litoral' })
+                this.setState({ region: 'Norte' })
                 break;
 
-
             case 4:
-                this.setState({ region: 'Sin Region' })
+                this.setState({ region: 'Nororiente' })
+                break;
+            case 5:
+                this.setState({ region: 'Suroriente' })
+                break;
+            case 6:
+                this.setState({ region: 'Suroccidente' })
+                break;
+            case 7:
+                this.setState({ region: 'Nororiente' })
                 break;
 
             default:
@@ -146,7 +166,7 @@ class Region extends Component {
 
                         <div className="col-md-6">
 
-                            <div className="row" style={{ paddingTop: 25, paddingBottom: 30 }}>
+                            <div className="row" style={{}}>
                                 <div className="col">
                                     <h1>{this.state.topName} | {this.state.topTotal} casos</h1>
                                 </div>
@@ -154,18 +174,21 @@ class Region extends Component {
 
                             <div className="row">
                                 <div className="col">
-                                    <ButtonGroup style={{ paddingTop: 10, paddingBottom: 10 }}>
+                                    <ButtonGroup style={{}}>
                                         <Button variant={(this.state.region === 'Peten') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(0) }}>Petén</Button>
-                                        <Button variant={(this.state.region === 'Franja') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(1) }}>Franja Transversal del Norte</Button>
+                                        <Button variant={(this.state.region === 'Metro') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(1) }}>Metropolitana</Button>
+                                        <Button variant={(this.state.region === 'Central') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(2) }}>Central</Button>
+                                        <Button variant={(this.state.region === 'Norte') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(3) }}>Norte</Button>
                                     </ButtonGroup>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col">
                                     <ButtonGroup style={{ paddingTop: 10, paddingBottom: 40 }}>
-                                        <Button variant={(this.state.region === 'Oriente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(2) }}>Región Oriente</Button>
-                                        <Button variant={(this.state.region === 'Litoral') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(3) }}>Litoral del Pacífico</Button>
-                                        <Button variant={(this.state.region === 'Sin Region') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(4) }}>Sin Región</Button>
+                                        <Button variant={(this.state.region === 'Nororiente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(4) }}>Nororiente</Button>
+                                        <Button variant={(this.state.region === 'Suroriente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(5) }}>Suroriente</Button>
+                                        <Button variant={(this.state.region === 'Suroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(6) }}>Suroccidente</Button>
+                                        <Button variant={(this.state.region === '') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(7) }}>Suroccidente</Button>
                                     </ButtonGroup>
                                 </div>
                             </div>

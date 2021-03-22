@@ -14,7 +14,7 @@ const Map = (props) => {
                 options={{
                     fillColor: props.color,
                     fillOpacity: 0.6,
-                    strokeColor: props.color,
+                    strokeColor: '#000',
                     strokeOpacity: 1,
                     strokeWeight: 1,
                     title: 'Peten',
