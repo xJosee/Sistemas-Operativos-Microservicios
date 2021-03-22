@@ -1,5 +1,4 @@
 import './App.css';
-import Covid from './components/covid-data/covid-data';
 import Modules from './components/modules-data/modules-data';
 import Home from './components/home';
 import About from './components/About';
@@ -12,6 +11,7 @@ import FunnelGraph from './components/covid-data/charts/funnel';
 import CakeGraph from './components/covid-data/charts/cake';
 import BarGraph from './components/covid-data/charts/bar'
 import PieGraph from './components/covid-data/charts/pie'
+import FilterData from './components/covid-data/tables/filter-data';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -42,6 +42,7 @@ function App() {
                   <Link className="dropdown-item" to="/top5-departamentos">Top 5 departamentos</Link>
                   <Link className="dropdown-item" to="/filter-state">Filtrodo por state</Link>
                   <Link className="dropdown-item" to="/filter-infected-type">Filtrodo por infectedType</Link>
+                  <Link className="dropdown-item" to="/filter-data">Data</Link>
                 </div>
               </li>
               <Link className="nav-item nav-link" to="/modules">Modules</Link>
@@ -51,13 +52,13 @@ function App() {
         </nav>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/covid" component={Covid} />
           <Route path="/modules" component={Modules} />
           <Route path="/about" component={About} />
           <Route path="/rango-edades" component={FunnelGraph} />
           <Route path="/top5-departamentos" component={BarGraph} />
           <Route path="/filter-state" component={PieGraph} />
           <Route path="/filter-infected-type" component={CakeGraph} />
+          <Route exact path="/filter-data" component={FilterData} />
         </Switch>
       </Router>
     );

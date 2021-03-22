@@ -44,6 +44,10 @@ function Modules() {
                         .btn-optionRAMActive:hover {
                             color: white;
                         }
+                        .btn:focus{
+                            outline:none;
+                            box-shadow: none
+                        }
                     `}
                 </style>
 
