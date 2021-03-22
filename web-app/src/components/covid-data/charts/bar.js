@@ -81,7 +81,7 @@ function BarGraph() {
 
     const renderPage = () => {
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-12" style={{ padding: 15, maxHeight: 500, maxWidth: 500 }}>
                         <Bar
