@@ -35,11 +35,11 @@ function App() {
           </button>
           <div className="collapse navbar-collapse" id="navbar">
             <div className="navbar-nav ml-auto mr-3">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="covid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="covid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Covid
                 </a>
-                <div class="dropdown-menu" aria-labelledby="covid">
+                <div className="dropdown-menu" aria-labelledby="covid">
                   <Link className="dropdown-item" to="/rango-edades">Rango de edades</Link>
                   <Link className="dropdown-item" to="/top5-departamentos">Top 5 departamentos</Link>
                   <Link className="dropdown-item" to="/filter-state">Filtrado por state</Link>
