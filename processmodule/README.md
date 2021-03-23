@@ -1,6 +1,7 @@
 ## Contenido
 - [Módulo de procesos](#módulo-de-procesos)
   * [Manual Técnico](#manual-técnico)
+    + [Librerias](#librerias)
     + [Funciones](#funciones)
     + [Estructuras](#estructuras)
   * [Manual de usuario](#manual-de-usuario)
@@ -11,33 +12,78 @@
     + [Limpieza](#limpieza)
 
 # Módulo de procesos
-Modulo de procesos que da información de los procesos actuales
 ## Manual Técnico
+### Librerias
+```c
+ // Librerias a cargar
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/kernel.h>
+#include <linux/seq_file.h>
+#include <linux/sched/signal.h>
+#include <linux/proc_fs.h>
+#include <linux/sched.h>
+ ```
+
 ### Funciones
 ```c
 static int procShow(struct seq_file *m, void *v)
+{
+    seq_printf(m, "[ ");
+    //Mediante este metodo nativo se itera el proceso
+    for_each_process(proc)
+    {
+        /*
+          Se obtienen los siguientes atributos del proceso:
+            -PID
+            -Nombre
+            -Estado
+          Este no tiene padre
+        */
+        seq_printf(m, "\n{\"PadrePID\": \"-\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},",
+                   proc->pid, proc->comm, proc->state);
+        /*
+          Mediate un list for each se pueden iterar los hijos
+          para ello es necesario pasar por referencia el atributo 
+          children el proceso padre
+        */
+        list_for_each(list, &proc->children)
+        {
+            /*
+            Se obtienen los siguientes atributos del proceso hijo:
+              -PID
+              -Nombre
+              -Estado
+              -Nombre del padre
+            */
+            proc_child = list_entry(list, struct task_struct, sibling);
+            seq_printf(m, "\n{\"PadrePID\": \"%d\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},", proc->pid,
+                       proc_child->pid, proc_child->comm, proc_child->state);
+        }
+    }
+    seq_printf(m, "]\n");
+
+    return 0;
+}
 ```
-**Agregar**
-```c
-static ssize_t procWrite(struct file *file, const char __user *buffer, size_t count, loff_t *f_pos)
-```
-**Agregar**
+En este metodo escribe en un archivo secuencial los procesos se encuentran en el kernel. 
 ```c
 static int procOpen(struct inode *inode, struct file *file)
 ```
-**Agregar**
+Hace la llamada al metodo que ejecutara todas las tareas establecidas para el modulo cuando se encuentre insertado.
 ```c
 static int __init test_init(void)
 ```
-**Agregar**
+Esta llamada carga la función que se ejecutará en el init
 ```c
 static void __exit test_exit(void)
 ```
-**Agregar**
+Esta llamada carga la función que se ejecutará en el exit
 ### Estructuras
 ```c
 static struct file_operations my_fops
 ```
+Mediante esta estructura se establecen las tareas que se ejecutaran.
 ## Manual de usuario
 ### Requisitos
 
@@ -59,7 +105,6 @@ $ sudo apt install gcc
 
 ### Montaje
 
-Linux:
 Para el montaje es necesario correr los siguientes comandos, el modulo se insertara en la carpeta /proc
 ```sh
 $ make test
@@ -71,23 +116,23 @@ $ cat /proc/procmodule
 
 ### Desmontaje
 
-Linux:
+Remueve el modulo del kernel
 
 ```sh
 make remove
 ```
 
-### Compilación
+## Compilación
 
-Linux:
+Compila el .c y genera todos los archivos necesarios para su ejecución.
 
 ```sh
 make all
 ```
 
-### Limpieza
+## Limpieza
 
-Linux:
+Remueve todos los archivos de compilaciones anteriores
 
 ```sh
 make clean

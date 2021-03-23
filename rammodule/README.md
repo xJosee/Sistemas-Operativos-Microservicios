@@ -75,23 +75,23 @@ $ cat /proc/rammodule
 
 ### Desmontaje
 
-Linux:
+Remueve el modulo del kernel
 
 ```sh
 make remove
 ```
 
-### Compilación
+## Compilación
 
-Linux:
+Compila el .c y genera todos los archivos necesarios para su ejecución.
 
 ```sh
 make all
 ```
 
-### Limpieza
+## Limpieza
 
-Linux:
+Remueve todos los archivos de compilaciones anteriores
 
 ```sh
 make clean

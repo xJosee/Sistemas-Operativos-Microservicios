@@ -32,7 +32,7 @@ Debido a la necesidad de que se pudieran recibir mensajes de parte del Publisher
 ```go
 func subscribe() 
 ```
-**Agregar**
+Es un subscriptor que se mantiene escuchando todos los mensajes enviados por un publisher. Para poder realizarlo se crea un cliente el cual va recoger todos los mensajes enviados publicados, al leer estos mensajes se utiliza el metodo **ack()** que informa que fue reconocido satisfactoriamente. Posteriormente mediante una petición se envia la data recibida al server.
 #### Dockerfile
 Para poder crear de mejor manera el contenedor, se opto por volver el paquete, un modulo para la correcta instalación de las dependencias del paquete
 ```Dockerfile
@@ -59,15 +59,15 @@ Debido a la necesidad de que se pudieran recibir mensajes de parte de una solici
 ```go
 func publish(message string)
 ```
-**Agregar**
+Este metodo tiene como objetivo publicar un mensaje, se realiza mediante un cliente en el cual se hace referencia a un topico, una vez referenciado se procede a publicar el mensaje, es importante saber que el mensaje se publica a pesar que no hayan subscriptores disponibles.
 ```go
 func homePage(w http.ResponseWriter, r *http.Request)
 ```
-**Agregar**
+Es la ruta por defecto para solicitudes HTTP, es el encargado de publicar lo mensajes recibidos.
 ```go
 func handleRequests()
 ```
-**Agregar**
+Este metodo es encargado de iniciar un servidor el cual se encuentra escuchando en el puerto 4000, es el encargado del control de rutas y recibe las solicitudes realizadas.
 #### Dockerfile
 Para poder crear de mejor manera el contenedor, se opto por volver el paquete, un modulo para la correcta instalación de las dependencias del paquete
 ```Dockerfile

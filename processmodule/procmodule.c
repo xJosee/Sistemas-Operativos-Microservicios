@@ -20,24 +20,21 @@ struct task_struct *proc, *proc_child;
 struct list_head *list;
 static int procShow(struct seq_file *m, void *v)
 {
-    
+
     seq_printf(m, "[ ");
-    for_each_process(proc){
-        seq_printf(m,"\n{\"PadrePID\": \"-\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},",
-                    proc->pid, proc->comm, proc->state);       
-        list_for_each(list, &proc->children){
-            proc_child = list_entry( list, struct task_struct, sibling ); 
-            seq_printf(m,"\n{\"PadrePID\": \"%d\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},", proc->pid, 
-                proc_child->pid, proc_child->comm, proc_child->state);
-        }	
-        
+    for_each_process(proc)
+    {
+        seq_printf(m, "\n{\"PadrePID\": \"-\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},",
+                   proc->pid, proc->comm, proc->state);
+        list_for_each(list, &proc->children)
+        {
+            proc_child = list_entry(list, struct task_struct, sibling);
+            seq_printf(m, "\n{\"PadrePID\": \"%d\", \"PID\": \"%d\", \"Nombre\": \"%s\", \"Estado\": \"%ld\"},", proc->pid,
+                       proc_child->pid, proc_child->comm, proc_child->state);
+        }
     }
     seq_printf(m, "]\n");
 
-    
-    //pid
-    //com
-    
     return 0;
 }
 
@@ -51,13 +48,11 @@ static int procOpen(struct inode *inode, struct file *file)
     return single_open(file, procShow, NULL);
 }
 
-
 static struct file_operations my_fops = {
     .owner = THIS_MODULE,
     .open = procOpen,
     .read = seq_read,
-    .write = procWrite
-};
+    .write = procWrite};
 
 static int __init test_init(void)
 {
