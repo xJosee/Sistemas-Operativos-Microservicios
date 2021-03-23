@@ -9,7 +9,7 @@ Autores del proyecto:
 ## Tráfico y Middlewares
 Este proyecto se llevo a acabo con utilizacon Locust para la simulación de generación de tráfico de registros médicos sobre pacientes de COVID-19, para distribuir la carga de este tráfico se uso un LoadBalancer de Google Cloud y de la ayuda de los middlewares RabbitMQ, NATS, gRPC y Google PubSub, para simular distintas fuentes de flujo de datos.
 
-Para conocer más detalles sobre el uso de Locust en el proyecto, dirigete [aquí](grpc/README.md)
+Para conocer más detalles sobre el uso de Locust en el proyecto, dirigete [aquí](grpc)
 
 Para conocer más detalles sobre el uso de los middlewares en el proyecto, dirigete al de tu interes:
 - [Acerca del uso de Google PubSub en el proyecto](https://github.com/xJosee/SO1A_G29_Proyecto1/blob/development/googlepubsub/README.MD)
