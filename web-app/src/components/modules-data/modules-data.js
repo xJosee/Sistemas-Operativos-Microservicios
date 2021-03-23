@@ -83,7 +83,22 @@ function Modules() {
                                 <Button variant={(indexSize === 2) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(2) }}>GB</Button>
                             </ButtonGroup>
                         </div>
+<<<<<<< HEAD
 >>>>>>> graficas
+=======
+                    </div>
+                    <div className="row">
+                        <div className="col-md-8">
+                            <Jumbotron >
+                                <h2><span style ={{color:"#30475e"}}>Usada</span> | <span style ={{color:"#f05454"}}>Libre</span></h2>
+                                <h3 style={{textAlign: "center"}}>
+                                    <span style={{ color:"#30475e" }}>  { (size === 1) ? total + 'KB' : (size === 1024) ? (total/size).toFixed(2) + 'MB' : (total/size).toFixed(4) + 'GB'  }</span> |
+                                    <span style={{ color:"#f05454"}}> { (size === 1) ? total-free + 'KB' : (size === 1024) ? ((total-free)/size).toFixed(2) + 'MB' : ((total-free)/size).toFixed(4) + 'GB'  }</span>
+                                </h3>
+                                
+                            </Jumbotron>
+                        </div>
+>>>>>>> 6b0c297d9e37fbff7a30be22fc1513bdfe923474
                     </div>
                     <div className="row">
                         <div className="col-md-6" >
