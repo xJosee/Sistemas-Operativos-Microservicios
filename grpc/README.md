@@ -2,6 +2,7 @@
 - [gRPC](#grpc)
   * [Manual Técnico](#manual-técnico)
     + [Docker Compose](#docker-compose)
+    + [Protobuf](#protobuf)
     + [Client](#client)
     + [Server](#server)
   * [Manual de usuario](#manual-de-usuario)
@@ -22,6 +23,36 @@ services:
   grpc-server:
       build: ./server
 ```
+## Protobuf
+```proto
+syntax = "proto3";
+
+package grpc;
+
+message ReqData {
+    string name = 1;
+    string location = 2;
+    int32 age = 3;
+    string infectedtype = 4;
+    string state = 5;
+}
+
+message ResData {
+    string name = 1;
+    string location = 2;
+    int32 age = 3;
+    string infectedtype = 4;
+    string state = 5;
+    string way = 6;
+}
+
+service covidService {
+    rpc handlerData(ReqData) returns (ResData){};
+}
+```
+**GRPC** utiliza Protocol Buffers (protobuf) para definir los servicios y los mensajes que se intercambiarán.
+**ReqData** Es la estructura de datos que se espera que se reciba y **ResData** es la estructura de datos que se espera que **GRPC** envíe al servidor de NodeJs.
+
 ### Client
 #### Funciones
 ```go
@@ -52,7 +83,7 @@ Debido a la necesidad de que se pudieran recibir mensajes de parte de una solici
 ```go
 func (*server) HandlerData(ctx context.Context, request *pb.ReqData) (*pb.ResData, error)
 ```
-**Agregar**
+La función **HandlerData** data es la encargada de manejar los datos, el cliente se comunica con esta funciona para poder agregarle el atributo way a los datos y así poder hacer el post hacía el servidor.
 #### Dockerfile
 Para poder crear de mejor manera el contenedor, se opto por volver el paquete, un modulo para la correcta instalación de las dependencias del paquete
 ```Dockerfile
