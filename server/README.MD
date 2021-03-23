@@ -36,28 +36,52 @@ services:
 ```js
 async createRecord(req, res)
 ```
-**Agregar**
+Crea un nuevo registro para la base de datos
+
+*Parámetros*:
+- *req*: Solicitud HTTP entrante
+- *res*: Respuesta HTTP saliente
 ```js
 async readAllRecord(req, res)
 ```
-**Agregar**
+Retorna todos los registros que se encuentren en la base de datos
+
+*Parámetros*:
+- *req*: Solicitud HTTP entrante
+- *res*: Respuesta HTTP saliente
 ```js
 async filterByWay(req, res)
 ```
-**Agregar**
+Filtra según el middleware por el cual se hayan enviado los registros
+
+*Parámetros*:
+- *req*: Solicitud HTTP entrante
+- *res*: Respuesta HTTP saliente
 ```js
 async filterByRegion(req, res)
 ```
-**Agregar**
+Filtra según la región de Guatemala, donde se haya registrado al paciente. Para más información de las regiones en las que se dividieron, vistar [aquí](https://es.wikipedia.org/wiki/Organizaci%C3%B3n_territorial_de_Guatemala)
+
+*Parámetros*:
+- *req*: Solicitud HTTP entrante
+- *res*: Respuesta HTTP saliente
 ### System Data
 ```js
 getProcesos(req, res)
 ```
-**Agregar**
+Retorna la salida generada por el módulo el cual lee los procesos
+
+*Parámetros*:
+- *req*: Solicitud HTTP entrante
+- *res*: Respuesta HTTP saliente
 ```js
 getRam(req, res)
 ```
-**Agregar**
+Retorna la salida generada por el módulo el cual lee la memoria RAM
+
+*Parámetros*:
+- *req*: Solicitud HTTP entrante
+- *res*: Respuesta HTTP saliente
 ### DockerFile
 ```Dockerfile
 FROM node:14

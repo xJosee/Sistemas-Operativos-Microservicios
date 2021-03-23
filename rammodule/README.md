@@ -1,69 +1,22 @@
+## Contenido
+- [Modulo de Memoria Ram](#modulo-de-memoria-ram)
+  * [Manual Técnico](#manual-técnico)
+  * [Manual de usuario](#manual-de-usuario)
+    + [Requisitos](#requisitos)
+    + [Montaje](#montaje)
+    + [Desmontaje](#desmontaje)
+    + [Compilación](#compilación)
+    + [Limpieza](#limpieza)
 # Modulo de Memoria Ram
 > Provee datos escenciales de memoria ram en tiempo de ejecución.
-
 
 Este modulo es capaz de ser montado y desmontado por medio de un archivo Makefile, el cual tambien permite la compilacion y limpieza del modulo. Los datos mostrados son:
 * Memoria ram libre en mb
 * Memoria ram total en mb
+* Memoria ram usada en mb
+* Memoria ram usada en porcentaje
 
-
-## Requisitos
-
-Verificar si los headers se encuentran instalados
-```sh
-$ apt search linux-headers-$(uname -r) 
-```
-En caso no se encuentren instalados, se deben instalar a travez del siguiente comando:
-```sh
-$ sudo apt install linux-headers-$(uname -r)
-```
-Instalar make y gcc para la compilación
-```sh
-# Instala make
-$ sudo apt install make
-# Instala gcc
-$ sudo apt install gcc
-```
-
-## Montaje
-
-Linux:
-Para el montaje es necesario correr los siguientes comandos, el modulo se insertara en la carpeta /proc
-```sh
-$ make test
-# Revisión de montaje correcto
-$ ls /proc/rammodule
-# Lectura de datos 
-$ cat /proc/rammodule
-```
-
-## Desmontaje
-
-Linux:
-
-```sh
-make remove
-```
-
-## Compilación
-
-Linux:
-
-```sh
-make all
-```
-
-## Limpieza
-
-Linux:
-
-```sh
-make clean
-```
-
-
-
-## ¿Qué contiene el modulo?
+## Manual Técnico
 El codigo se encuentra estructurado por las siguientes librerias:
  ```c
  // Librerias a cargar
@@ -89,8 +42,57 @@ freer = memstruct.freeram * 4;
 seq_printf(m, "{\"Total\":\"%lu\", \"Libre\":\"%lu\"}", total, freer);
 ```
 
+## Manual de usuario
+### Requisitos
 
-## Meta
+Verificar si los headers se encuentran instalados
+```sh
+$ apt search linux-headers-$(uname -r) 
+```
+En caso no se encuentren instalados, se deben instalar a travez del siguiente comando:
+```sh
+$ sudo apt install linux-headers-$(uname -r)
+```
+Instalar make y gcc para la compilación
+```sh
+# Instala make
+$ sudo apt install make
+# Instala gcc
+$ sudo apt install gcc
+```
 
-Grupo 29 – [@Grupo29](https://github.com/xJosee/covid-app-cloud)
+### Montaje
 
+Linux:
+Para el montaje es necesario correr los siguientes comandos, el modulo se insertara en la carpeta /proc
+```sh
+$ make test
+# Revisión de montaje correcto
+$ ls /proc/rammodule
+# Lectura de datos 
+$ cat /proc/rammodule
+```
+
+### Desmontaje
+
+Linux:
+
+```sh
+make remove
+```
+
+### Compilación
+
+Linux:
+
+```sh
+make all
+```
+
+### Limpieza
+
+Linux:
+
+```sh
+make clean
+```

@@ -6,7 +6,7 @@ import './graph.css'
 import './style.css'
 import ClipLoader from "react-spinners/ClipLoader";
 
-export default class LineExample extends Component {
+export default class FunnelG extends Component {
 
     constructor(props) {
         super(props);

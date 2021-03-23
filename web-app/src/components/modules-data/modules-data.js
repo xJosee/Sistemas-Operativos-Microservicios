@@ -1,7 +1,7 @@
 
 import '../../App.css';
 import RamCake from './ram/ramcake'
-import LineExample from './ram/line'
+import RamLine from './ram/ramline'
 import Proc from './proc';
 import { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -11,14 +11,14 @@ function Modules() {
     const [loading, setLoading] = useState(false);
     const [indexSize, setIndexSize] = useState(0);
     const [size, setSize] = useState(1);
-    const [free, setFree] = useState(0);
-    const [total, setTotal] = useState(0);
+    const [free, setFree] = useState(100000);
+    const [total, setTotal] = useState(200000);
 
     useEffect(() => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 2500);
+        }, 2000);
     }, []);
 
     useEffect(() => {
@@ -96,7 +96,7 @@ function Modules() {
                     </div>
                     <div className="row">
                         <div className="col-md-6" >
-                            <LineExample libre={free} total={total} size={size} />
+                            <RamLine libre={free} total={total} size={size} />
                         </div>
                         <div className="col-md-6">
                             <RamCake libre={free} total={total} />
