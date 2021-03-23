@@ -103,13 +103,14 @@ class FilterData extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-md-12">
                         <BootstrapTable
                             keyField="name"
                             data={this.state.patients}
                             columns={this.columns}
                             pagination={paginationFactory(options)}
-
+                            bootstrap4={true}
+                            wrapperClasses={"table-responsive"}
                         />
                     </div>
                 </div>
