@@ -46,7 +46,7 @@ function App() {
                   <Link className="dropdown-item" to="/filter-infected-type">Filtrado por infectedType</Link>
                   <Link className="dropdown-item" to="/filter-data">Filtrado por Middleware</Link>
                   <Link className="dropdown-item" to="/last-data">Ultimos 5 registrados</Link>
-                  <Link className="dropdown-item" to="/region">Region</Link>
+                  <Link className="dropdown-item" to="/region">Contagiados por región</Link>
                 </div>
               </li>
               <Link className="nav-item nav-link" to="/modules">Modules</Link>

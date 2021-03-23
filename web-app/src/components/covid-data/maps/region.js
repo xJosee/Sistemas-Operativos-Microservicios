@@ -178,7 +178,7 @@ class Region extends Component {
                                         <Button variant={(this.state.region === 'Peten') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(0) }}>Petén</Button>
                                         <Button variant={(this.state.region === 'Metro') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(1) }}>Metropolitana</Button>
                                         <Button variant={(this.state.region === 'Central') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(2) }}>Central</Button>
-                                        <Button variant={(this.state.region === 'Norte') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(3) }}>Norte</Button>
+                                        <Button variant={(this.state.region === 'Noroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(7) }}>Noroccidente</Button>
                                     </ButtonGroup>
                                 </div>
                             </div>
@@ -188,7 +188,7 @@ class Region extends Component {
                                         <Button variant={(this.state.region === 'Nororiente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(4) }}>Nororiente</Button>
                                         <Button variant={(this.state.region === 'Suroriente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(5) }}>Suroriente</Button>
                                         <Button variant={(this.state.region === 'Suroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(6) }}>Suroccidente</Button>
-                                        <Button variant={(this.state.region === 'Noroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(7) }}>Noroccidente</Button>
+                                        <Button variant={(this.state.region === 'Norte') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(3) }}>Norte</Button>
                                     </ButtonGroup>
                                 </div>
                             </div>

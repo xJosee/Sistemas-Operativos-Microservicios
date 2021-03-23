@@ -16,8 +16,8 @@ function About() {
                         <img className="card-img-top" src={jose} alt="Card image cap"></img>
                         <div className="card-body">
                             <h5 className="card-title">José Luis Herrera</h5>
-                            <p className="card-text">Some quick example text to build on the</p>
-                            <a href="https://github.com/xJosee" className="btn btn-primary">github</a>
+                            <p className="card-text">201807431</p>
+                            <a href="https://github.com/xJosee" className="btn btn-primary">GitHub Profile</a>
                         </div>
                     </div>
                 </div>
@@ -26,8 +26,8 @@ function About() {
                         <img className="card-img-top" src={cante} alt="Card image cap"></img>
                         <div className="card-body">
                             <h5 className="card-title">Jorge Alexander Canté</h5>
-                            <p className="card-text">Some quick example text to build on the</p>
-                            <a href="https://github.com/xJosee" className="btn btn-primary">github</a>
+                            <p className="card-text">201800499</p>
+                            <a href="https://github.com/JACLs" className="btn btn-primary">GitHub Profile</a>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@ function About() {
                         <img className="card-img-top" src={moran} alt="Card image cap"></img>
                         <div className="card-body">
                             <h5 className="card-title">José Eduardo Morán</h5>
-                            <p className="card-text">Some quick example text to build on the</p>
-                            <a href="https://github.com/xJosee" className="btn btn-primary">github</a>
+                            <p className="card-text">201807455</p>
+                            <a href="https://github.com/josemoran40" className="btn btn-primary">GitHub Profile</a>
                         </div>
                     </div>
                 </div>
