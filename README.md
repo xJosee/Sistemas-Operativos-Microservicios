@@ -30,17 +30,17 @@ Para conocer más detalles sobre el uso de los middlewares en el proyecto, dirig
 - [Acerca del uso de NATS en el proyecto](nats)
 
 ## Almacenamiento y procesamiento de datos
-Para la recepción y almacenado de los datos se contó con una API RESt basada en NodeJS y una base de datos MongoDB, la instancia donde se ejecutaban estos servicios contaba con modulos capaces de darnos información acerca de los procesos y cantidad de RAM que consumia.
+Para la recepción y almacenado de los datos se contó con una API REST basada en NodeJS y una base de datos MongoDB, la instancia donde se ejecutaban estos servicios contaba con modulos capaces de darnos información acerca de los procesos y cantidad de RAM que consumia.
 
 Para conocer más acerca de como se almacenaron y procesaron los datos, dirigete [aquí](server)
 
 ## Análisis y visualización de datos
 Para poder visualizar los datos recibos en este proyecto, se dispuso de una aplicación en ReactJS implementada en Google Run de Google Cloud, dicha aplicación no solo muestra distintos datos acerca de los datos recopilados por el flujo de datos de la aplicación sino también nos muestra los recursos que se consumen para poder realizar la captura, almacenamiento y distribución de los datos antes mencionados.
 
-Para conocer más acerca de como se analisan y visualizan los datos, dirigete [aquí](web-app)
+Para conocer más acerca de como se analizan y visualizan los datos, dirigete [aquí](web-app)
 
 ## Módulos de RAM y procesos
-En el proyecto se implemento un módulo en el kernel para conocer los procesos y la RAM que se consumen dentro del servidor que almacena y procesa los datos, a manera de demostrar la integración de módulos que permite agregar Linux.
+En el proyecto se implemento un módulo en el kernel para conocer los procesos y la RAM que se consumen dentro del servidor que almacena y procesa los datos, a manera de demostrar la integración de módulos al kernel Linux.
 
 Para conocer más detalles de los módulos:
 - [Implementación del módulo de RAM](rammodule)
