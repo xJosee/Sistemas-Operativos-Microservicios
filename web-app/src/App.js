@@ -44,7 +44,7 @@ function App() {
                   <Link className="dropdown-item" to="/top5-departamentos">Top 5 departamentos</Link>
                   <Link className="dropdown-item" to="/filter-state">Filtrado por state</Link>
                   <Link className="dropdown-item" to="/filter-infected-type">Filtrado por infectedType</Link>
-                  <Link className="dropdown-item" to="/filter-data">Filtraro por Middleware</Link>
+                  <Link className="dropdown-item" to="/filter-data">Filtrado por Middleware</Link>
                   <Link className="dropdown-item" to="/last-data">Ultimos 5 registrados</Link>
                   <Link className="dropdown-item" to="/region">Region</Link>
                 </div>

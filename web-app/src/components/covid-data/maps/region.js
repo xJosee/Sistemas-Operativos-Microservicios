@@ -49,11 +49,11 @@ class Region extends Component {
 
 
                 case 'Suroccidente':
-                    this.setState({ poligono: polygons.suroccidente, color: '#98938F' })
+                    this.setState({ poligono: polygons.suroccidente, color: '#06D9E1' })
                     break;
 
-                case 'Todos':
-                    this.setState({ poligono: polygons.suroccidente, color: '#' })
+                case 'Noroccidente':
+                    this.setState({ poligono: polygons.noroccidente, color: '#0BE106' })
                     break;
 
                 default:
@@ -113,7 +113,7 @@ class Region extends Component {
                 this.setState({ region: 'Suroccidente' })
                 break;
             case 7:
-                this.setState({ region: 'Nororiente' })
+                this.setState({ region: 'Noroccidente' })
                 break;
 
             default:
@@ -184,11 +184,11 @@ class Region extends Component {
                             </div>
                             <div className="row">
                                 <div className="col">
-                                    <ButtonGroup style={{ paddingTop: 10, paddingBottom: 40 }}>
+                                    <ButtonGroup style={{ paddingTop: 10, paddingBottom: 10 }}>
                                         <Button variant={(this.state.region === 'Nororiente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(4) }}>Nororiente</Button>
                                         <Button variant={(this.state.region === 'Suroriente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(5) }}>Suroriente</Button>
                                         <Button variant={(this.state.region === 'Suroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(6) }}>Suroccidente</Button>
-                                        <Button variant={(this.state.region === '') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(7) }}>Suroccidente</Button>
+                                        <Button variant={(this.state.region === 'Noroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(7) }}>Noroccidente</Button>
                                     </ButtonGroup>
                                 </div>
                             </div>
@@ -199,6 +199,7 @@ class Region extends Component {
                                         keyField="name"
                                         data={this.state.data}
                                         columns={this.columns}
+                                        wrapperClasses={"table-responsive"}
                                     />
                                 </div>
                             </div>

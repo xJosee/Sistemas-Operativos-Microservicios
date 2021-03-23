@@ -40,6 +40,7 @@ class LastData extends Component {
                             keyField="name"
                             data={this.state.patients}
                             columns={this.columns}
+                            wrapperClasses={"table-responsive"}
                         />
                     </div>
                 </div>
