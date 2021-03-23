@@ -22,12 +22,16 @@ module.exports = {
     },
 
     async filterByRegion(req, res) {
+        const suroccidente = ['Quetzaltenango', 'Retalhuleu', 'San Marcos', 'Suchitepéquez', 'Sololá', 'Totonicapán'];
+        const metropolitana = ['Guatemala'];
+        const noroccidente = ['Huehuetenango', 'Quiché'];
+        const central = ['Chimaltenango', 'Sacatepéquez', 'Escuintla']
+        const verapaz = ['Alta Verapaz', 'Baja Verapaz'];
+        const nororiente = ['Chiquimula', 'El Progreso', 'Izabal', 'Zacapa'];
+        const suroriente = ['Jutiapa', 'Jalapa', 'Santa Rosa'];
         const peten = ['Petén'];
-        const franja_transversal_del_norte = ['Huehuetenango', 'Izabal', 'Alta Verapaz'];
-        const oriente = ['Zacapa', 'El Progreso', 'Chiquimula', 'Izabal', 'Jutiapa', 'Jalapa', 'Santa Rosa'];
-        const litoral_del_pacifico = ['Jutiapa', 'Santa Rosa', 'Escuintla', 'Suchitepéquez', 'Retalhuleu', 'San Marcos', 'Quetzaltenango'];
         var sinRegion = [];
-        sinRegion = sinRegion.concat(peten, franja_transversal_del_norte, oriente, litoral_del_pacifico);
+        sinRegion = sinRegion.concat(suroccidente, metropolitana, noroccidente, central, verapaz, nororiente, suroriente);
         var datos = await covidModel.aggregate([
             {
                 $facet: {
@@ -41,30 +45,70 @@ module.exports = {
                             $count: "count"
                         }
                     ],
-                    "Franja transversal del norte": [
+                    "Suroccidente": [
                         {
                             $match: {
-                                location: { $in: franja_transversal_del_norte }
+                                location: { $in: suroccidente }
                             }
                         },
                         {
                             $count: "count"
                         }
                     ],
-                    "Región oriente": [
+                    "Metropolitana": [
                         {
                             $match: {
-                                location: { $in: oriente }
+                                location: { $in: metropolitana }
                             }
                         },
                         {
                             $count: "count"
                         }
                     ],
-                    "Litoral del pacífico": [
+                    "Noroccidente": [
                         {
                             $match: {
-                                location: { $in: litoral_del_pacifico }
+                                location: { $in: noroccidente }
+                            }
+                        },
+                        {
+                            $count: "count"
+                        }
+                    ],
+                    "Central": [
+                        {
+                            $match: {
+                                location: { $in: central }
+                            }
+                        },
+                        {
+                            $count: "count"
+                        }
+                    ],
+                    "Verapaz": [
+                        {
+                            $match: {
+                                location: { $in: verapaz }
+                            }
+                        },
+                        {
+                            $count: "count"
+                        }
+                    ],
+                    "Nororiente": [
+                        {
+                            $match: {
+                                location: { $in: nororiente }
+                            }
+                        },
+                        {
+                            $count: "count"
+                        }
+                    ],
+                    "Suroriente": [
+                        {
+                            $match: {
+                                location: { $in: suroriente }
                             }
                         },
                         {
