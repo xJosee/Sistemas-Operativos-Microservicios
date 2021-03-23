@@ -25,6 +25,24 @@ function Modules() {
         setSize((indexSize === 0) ? 1 : (indexSize === 1) ? 1024 : 1024 * 1024)
     }, [indexSize])
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchValues()
+        }, 1500);
+        return () => clearInterval(interval);
+    });
+
+    const fetchValues = () => {
+        fetch('http://34.67.69.50:7000/modulos/getRam')
+            .then((response) => response.json())
+            .then((json) => {
+                // console.log(parseInt(json.Total, 10) - parseInt(json.Libre, 10), json.Libre)
+                setFree(json.Libre);
+                setTotal(json.Total);
+            })
+            .catch((error) => console.error(error))
+    }
+
     const renderPage = () => {
         return (
             <>
@@ -47,21 +65,28 @@ function Modules() {
                         .btn-optionRAMActive:hover {
                             color: white;
                         }
-                        .btn:focus{
-                            outline:none;
-                            box-shadow: none
-                        }
                     `}
                 </style>
-
                 <div className="container">
                     <div className="row">
                         <div className="col-md-2 mx-auto" align="center">
-                            <ButtonGroup style={{ paddingTop: 10 }}>
+                            <ButtonGroup style={{ paddingTop: 10, paddingBottom: 15 }}>
                                 <Button variant={(indexSize === 0) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(0) }}>KB</Button>
                                 <Button variant={(indexSize === 1) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(1) }}>MB</Button>
                                 <Button variant={(indexSize === 2) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(2) }}>GB</Button>
                             </ButtonGroup>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-8">
+                            <Jumbotron >
+                                <h2><span style={{ color: "#30475e" }}>Usada</span> | <span style={{ color: "#f05454" }}>Libre</span></h2>
+                                <h3 style={{ textAlign: "center" }}>
+                                    <span style={{ color: "#30475e" }}>  {(size === 1) ? total + 'KB' : (size === 1024) ? (total / size).toFixed(2) + 'MB' : (total / size).toFixed(4) + 'GB'}</span> |
+                                    <span style={{ color: "#f05454" }}> {(size === 1) ? total - free + 'KB' : (size === 1024) ? ((total - free) / size).toFixed(2) + 'MB' : ((total - free) / size).toFixed(4) + 'GB'}</span>
+                                </h3>
+
+                            </Jumbotron>
                         </div>
                     </div>
                     <div className="row">

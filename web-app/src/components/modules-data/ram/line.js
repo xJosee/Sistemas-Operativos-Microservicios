@@ -48,11 +48,22 @@ export default class LineExample extends Component {
 
     }
 
-    componentDidMount() {
-        const ctx = document.getElementById('graph');
-        this.chart = new Chart(ctx, this.data);
+    componentDidUpdate(prevProps, prevState) {
+        //Change size
+        if (prevProps.size !== this.props.size) {
+            this.size = this.props.size;
+            this.data.options.scales.yAxes[0].scaleLabel.labelString = 'RAM (' + ((this.props.size === 1) ? 'KB' : ((this.props.size === 1024) ? 'MB' : 'GB')) + ')';
+            this.data.data.datasets[0].data = []
+        }
 
-        this.timer = setInterval(() => this.fetchValues(), 1500);
+        if (prevProps.libre !== this.props.libre) {
+            this.data.data.datasets[0].data.push((this.props.size === 1) ? this.props.total - this.props.libre : (this.props.size === 1024) ? ((this.props.total - this.props.libre) / this.props.size).toFixed(2) : ((this.props.total - this.props.libre) / this.props.size).toFixed(5));
+            if (this.data.data.datasets[0].data.length >= 7) {
+                this.data.data.datasets[0].data.shift()
+            }
+            this.chart.update();
+        }
+
     }
 
     render() {
