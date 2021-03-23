@@ -1,7 +1,7 @@
 
 import '../../App.css';
 import RamCake from './ram/ramcake'
-import LineExample from './ram/line'
+import RamLine from './ram/ramline'
 import Proc from './proc';
 import { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -11,19 +11,19 @@ function Modules() {
     const [loading, setLoading] = useState(false);
     const [indexSize, setIndexSize] = useState(0);
     const [size, setSize] = useState(1);
-    const [free, setFree] = useState(0);
-    const [total, setTotal] = useState(0);
+    const [free, setFree] = useState(100000);
+    const [total, setTotal] = useState(200000);
 
     useEffect(() => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 2500);
+        }, 2000);
     }, []);
 
     useEffect(() => {
-        setSize((indexSize === 0) ? 1 : (indexSize === 1) ? 1024 : 1024 * 1024)
-    }, [indexSize])
+        setSize( (indexSize === 0) ? 1 : (indexSize === 1) ? 1024 : 1024*1024 )
+    },[indexSize])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -76,27 +76,27 @@ function Modules() {
                     <div className="row">
                         <div className="col-md-2 mx-auto" align="center">
                             <ButtonGroup style={{ paddingTop: 10, paddingBottom: 15 }}>
-                                <Button variant={(indexSize === 0) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(0) }}>KB</Button>
-                                <Button variant={(indexSize === 1) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(1) }}>MB</Button>
-                                <Button variant={(indexSize === 2) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(2) }}>GB</Button>
+                                <Button variant={ (indexSize === 0) ? "optionRAMActive" : "optionRAM" } onClick={() => {setIndexSize(0)}}>KB</Button>
+                                <Button variant={ (indexSize === 1) ? "optionRAMActive" : "optionRAM" } onClick={() => {setIndexSize(1)}}>MB</Button>
+                                <Button variant={ (indexSize === 2) ? "optionRAMActive" : "optionRAM" } onClick={() => {setIndexSize(2)}}>GB</Button>
                             </ButtonGroup>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-8">
                             <Jumbotron >
-                                <h2><span style={{ color: "#30475e" }}>Total</span> | <span style={{ color: "#f05454" }}>Usada</span></h2>
-                                <h3 style={{ textAlign: "center" }}>
-                                    <span style={{ color: "#30475e" }}>  {(size === 1) ? total + 'KB' : (size === 1024) ? (total / size).toFixed(2) + 'MB' : (total / size).toFixed(4) + 'GB'}</span> |
-                                    <span style={{ color: "#f05454" }}> {(size === 1) ? total - free + 'KB' : (size === 1024) ? ((total - free) / size).toFixed(2) + 'MB' : ((total - free) / size).toFixed(4) + 'GB'}</span>
+                                <h2><span style ={{color:"#30475e"}}>Usada</span> | <span style ={{color:"#f05454"}}>Libre</span></h2>
+                                <h3 style={{textAlign: "center"}}>
+                                    <span style={{ color:"#30475e" }}>  { (size === 1) ? total + 'KB' : (size === 1024) ? (total/size).toFixed(2) + 'MB' : (total/size).toFixed(4) + 'GB'  }</span> |
+                                    <span style={{ color:"#f05454"}}> { (size === 1) ? total-free + 'KB' : (size === 1024) ? ((total-free)/size).toFixed(2) + 'MB' : ((total-free)/size).toFixed(4) + 'GB'  }</span>
                                 </h3>
-
+                                
                             </Jumbotron>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-6" >
-                            <LineExample libre={free} total={total} size={size} />
+                            <RamLine libre={free} total={total} size={size} />
                         </div>
                         <div className="col-md-6">
                             <RamCake libre={free} total={total} />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Chart from 'chart.js';
 
 
-export default class LineExample extends Component {
+export default class RamLine extends Component {
     constructor(props) {
         super(props);
         this.chart = Chart;
@@ -57,6 +57,7 @@ export default class LineExample extends Component {
         }
 
         if (prevProps.libre !== this.props.libre) {
+            if (this.props.total - this.props.libre > 0)
             this.data.data.datasets[0].data.push((this.props.size === 1) ? this.props.total - this.props.libre : (this.props.size === 1024) ? ((this.props.total - this.props.libre) / this.props.size).toFixed(2) : ((this.props.total - this.props.libre) / this.props.size).toFixed(5));
             if (this.data.data.datasets[0].data.length >= 7) {
                 this.data.data.datasets[0].data.shift()
