@@ -4,13 +4,14 @@ import 'funnel-graph-js/src/scss/main.scss';
 import 'funnel-graph-js/src/scss/theme.scss';
 import './graph.css'
 import './style.css'
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default class LineExample extends Component {
 
     constructor(props) {
         super(props);
         this.timer = null;
-        this.state = { value: 1000 }
+        this.state = { value: 1000, loading: true }
         this.graph = new FunnelGraph({
             container: '.funnel',
             gradientDirection: 'vertical',
@@ -25,11 +26,13 @@ export default class LineExample extends Component {
             height: 300,
             subLabelValue: 'raw'
         });
+
     }
 
     componentDidMount() {
         this.graph.draw();
-        this.timer = setInterval(() => this.fetchValues(), 1500);
+        setInterval(() => this.setState({ loading: false }), 1500);
+        this.timer = setInterval(() => this.fetchValues(), 1200);
     }
 
     componentWillUnmount() {
@@ -63,7 +66,16 @@ export default class LineExample extends Component {
 
     };
 
-    render() {
+    renderLoader = () => {
+        return (
+            <div className="wrapper">
+                <h1 className="title">Covid App</h1>
+                <ClipLoader color={"#000"} loading={this.state.loading} size={40} />
+            </div>
+        );
+    }
+
+    renderPage() {
         return (
             <div>
                 <div className="row">
@@ -81,6 +93,13 @@ export default class LineExample extends Component {
         );
     }
 
-
+    render() {
+        return (
+            <>
+                {this.state.loading ? this.renderLoader() : null}
+                {this.renderPage()}
+            </>
+        );
+    }
 
 };

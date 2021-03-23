@@ -147,15 +147,39 @@ class Region extends Component {
                             outline:none;
                             box-shadow: none
                         }
+                        .btn-group{
+                            flex-wrap: wrap;
+                        }
                     `}
                 </style>
                 <div className="container-fluid">
 
+                    <div className="row" style={{ paddingTop: 20 }}>
+                        <div className="col">
+                            <h1>{this.state.topName} | {this.state.topTotal} casos</h1>
+                        </div>
+                    </div>
+
+                    <div className="row" style={{ paddingBottom: 20 }}>
+                        <div className="col-md-12">
+                            <ButtonGroup >
+                                <Button variant={(this.state.region === 'Peten') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(0) }}>Petén</Button>
+                                <Button variant={(this.state.region === 'Metro') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(1) }}>Metropolitana</Button>
+                                <Button variant={(this.state.region === 'Central') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(2) }}>Central</Button>
+                                <Button variant={(this.state.region === 'Noroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(7) }}>Noroccidente</Button>
+                                <Button variant={(this.state.region === 'Nororiente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(4) }}>Nororiente</Button>
+                                <Button variant={(this.state.region === 'Suroriente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(5) }}>Suroriente</Button>
+                                <Button variant={(this.state.region === 'Suroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(6) }}>Suroccidente</Button>
+                                <Button variant={(this.state.region === 'Norte') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(3) }}>Norte</Button>
+
+                            </ButtonGroup>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col-md-6">
                             <Map
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credential.mapsKey}`}
-                                containerElement={<div style={{ height: '550px' }} />}
+                                containerElement={<div style={{ height: '500px' }} />}
                                 mapElement={<div style={{ height: '100%', width: '100%' }} />}
                                 loadingElement={<p>Cargando</p>}
                                 selectedRegion={this.state.poligono}
@@ -166,32 +190,7 @@ class Region extends Component {
 
                         <div className="col-md-6">
 
-                            <div className="row" style={{}}>
-                                <div className="col">
-                                    <h1>{this.state.topName} | {this.state.topTotal} casos</h1>
-                                </div>
-                            </div>
 
-                            <div className="row">
-                                <div className="col">
-                                    <ButtonGroup style={{}}>
-                                        <Button variant={(this.state.region === 'Peten') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(0) }}>Petén</Button>
-                                        <Button variant={(this.state.region === 'Metro') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(1) }}>Metropolitana</Button>
-                                        <Button variant={(this.state.region === 'Central') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(2) }}>Central</Button>
-                                        <Button variant={(this.state.region === 'Noroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(7) }}>Noroccidente</Button>
-                                    </ButtonGroup>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col">
-                                    <ButtonGroup style={{ paddingTop: 10, paddingBottom: 10 }}>
-                                        <Button variant={(this.state.region === 'Nororiente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(4) }}>Nororiente</Button>
-                                        <Button variant={(this.state.region === 'Suroriente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(5) }}>Suroriente</Button>
-                                        <Button variant={(this.state.region === 'Suroccidente') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(6) }}>Suroccidente</Button>
-                                        <Button variant={(this.state.region === 'Norte') ? "optionRAMActive" : "optionRAM"} onClick={() => { this.setRegion(3) }}>Norte</Button>
-                                    </ButtonGroup>
-                                </div>
-                            </div>
 
                             <div className="row">
                                 <div className="col-12">

@@ -29,7 +29,7 @@ function App() {
       <Router>
         <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
           <img width="30" height="30" src={logo}></img>
-          <Link className="navbar-brand ml-3" to="/">Covid App</Link>
+          <Link className="navbar-brand ml-3" to="/">Covid-19</Link>
           <button className="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -49,8 +49,8 @@ function App() {
                   <Link className="dropdown-item" to="/region">Contagiados por región</Link>
                 </div>
               </li>
-              <Link className="nav-item nav-link" to="/modules">Modules</Link>
-              <Link className="nav-item nav-link" to="/about">About</Link>
+              <Link className="nav-item nav-link" to="/modules">Modulos</Link>
+              <Link className="nav-item nav-link" to="/about">Acerca de</Link>
             </div>
           </div>
         </nav>

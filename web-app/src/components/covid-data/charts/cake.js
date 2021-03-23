@@ -29,14 +29,14 @@ function CakeGraph() {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 1500);
+        }, 1400);
     }, []);
     useEffect(() => {
         const interval = setInterval(() => {
 
             fetchValues()
 
-        }, 1500);
+        }, 1200);
         return () => clearInterval(interval);
     });
 

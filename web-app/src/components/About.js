@@ -8,7 +8,7 @@ function About() {
     return (
         <div className="container">
             <div className="row mt-4">
-                <h3>Developers</h3>
+                <h3>Desarrolladores</h3>
             </div>
             <div className="row">
                 <div className="col-md-4 mx-auto mt-3" align="center">
