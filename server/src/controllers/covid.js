@@ -26,11 +26,12 @@ module.exports = {
         const franja_transversal_del_norte = ['Huehuetenango', 'Izabal', 'Alta Verapaz'];
         const oriente = ['Zacapa', 'El Progreso', 'Chiquimula', 'Izabal', 'Jutiapa', 'Jalapa', 'Santa Rosa'];
         const litoral_del_pacifico = ['Jutiapa', 'Santa Rosa', 'Escuintla', 'Suchitepéquez', 'Retalhuleu', 'San Marcos', 'Quetzaltenango'];
-
+        var sinRegion = [];
+        sinRegion = sinRegion.concat(peten, franja_transversal_del_norte, oriente, litoral_del_pacifico);
         var datos = await covidModel.aggregate([
             {
                 $facet: {
-                    peten: [
+                    "Petén": [
                         {
                             $match: {
                                 location: { $in: peten }
@@ -40,7 +41,7 @@ module.exports = {
                             $count: "count"
                         }
                     ],
-                    franja_transversal_del_norte: [
+                    "Franja transversal del norte": [
                         {
                             $match: {
                                 location: { $in: franja_transversal_del_norte }
@@ -50,7 +51,7 @@ module.exports = {
                             $count: "count"
                         }
                     ],
-                    oriente: [
+                    "Región oriente": [
                         {
                             $match: {
                                 location: { $in: oriente }
@@ -60,7 +61,7 @@ module.exports = {
                             $count: "count"
                         }
                     ],
-                    litoral_del_pacifico: [
+                    "Litoral del pacífico": [
                         {
                             $match: {
                                 location: { $in: litoral_del_pacifico }
@@ -69,12 +70,23 @@ module.exports = {
                         {
                             $count: "count"
                         }
-                    ]
+                    ],
+                    "Sin región": [
+                        {
+                            $match: {
+                                location: { $nin: sinRegion }
+                            }
+
+                        },
+                        {
+                            $count: "count"
+                        }
+                    ],
                 }
             }
         ]);
 
-        res.status(200).send(datos);
+        res.status(200).send(datos[0]);
     },
 
     async getTop5(req, res) {

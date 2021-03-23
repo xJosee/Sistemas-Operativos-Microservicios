@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 function BarGraph() {
     const [data, setData] = useState({
@@ -19,7 +19,13 @@ function BarGraph() {
         ],
     })
 
-
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500);
+    }, []);
     useEffect(() => {
         const interval = setInterval(() => {
             fetchValues()
@@ -48,7 +54,7 @@ function BarGraph() {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Rango de edades',
+                            label: 'Cantidad de casos',
                             backgroundColor: 'rgba(240, 84, 84, 0.7)',
                             borderColor: 'rgba(48, 71, 94)',
                             borderWidth: 1,
@@ -63,37 +69,58 @@ function BarGraph() {
             })
             .catch((error) => console.error(error))
     }
-    return (
 
-        <div className="row">
-            <div className="col-md-12" style={{ padding: 15, maxHeight: 500, maxWidth: 500 }}>
-                <Bar
-                    data={data}
-                    width={500}
-                    height={500}
-                    options={{
-                        maintainAspectRatio: false,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                },
-                                scaleLabel: {
-                                    labelString: 'Persons',
-                                    display: true
-                                }
-                            }],
-                            xAxes: [{
-                                scaleLabel: {
-                                    labelString: 'Ages (Years)',
-                                    display: true
-                                }
-                            }]
-                        },
-                    }}
-                />
+    const renderLoader = () => {
+        return (
+            <div className="wrapper">
+                <h1 className="title">Covid App</h1>
+                <ClipLoader color={"#000"} loading={loading} size={40} />
             </div>
-        </div>
+        );
+    }
+
+    const renderPage = () => {
+        return (
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-12" style={{ padding: 15, maxHeight: 450, maxWidth: 450 }}>
+                        <h1 style={{ paddingTop: 25, paddingBottom: 5 }}>Rango de edades</h1>
+                        <Bar
+                            data={data}
+                            width={400}
+                            height={400}
+                            options={{
+                                maintainAspectRatio: false,
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        },
+                                        scaleLabel: {
+                                            labelString: 'Persons',
+                                            display: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        scaleLabel: {
+                                            labelString: 'Ages (Years)',
+                                            display: true
+                                        }
+                                    }]
+                                },
+                            }}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <>
+            {loading ? renderLoader() : null}
+            {renderPage()}
+        </>
     );
 }
 
