@@ -4,6 +4,8 @@
 }
 @media only screen and (max-width: 600px) {
     .rotate{
+        margin-top: 150px;
+        margin-bottom: 150px;
         object-fit: contain;
         background-size: contain;
         -webkit-transform: rotate(90deg);

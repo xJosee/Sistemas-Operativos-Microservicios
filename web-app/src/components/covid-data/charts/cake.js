@@ -1,36 +1,42 @@
 import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 function CakeGraph() {
     const [data, setData] = useState({
         labels: [
-            ''
+            '', '', ''
         ],
         datasets: [{
-            data: [0],
+            data: [100, 100, 100],
             backgroundColor: [
                 '#222831',
                 '#dddddd',
+                '#f05454',
                 '#30475e',
-                '#f05454'
             ],
             hoverBackgroundColor: [
                 '#222831',
                 '#dddddd',
+                '#f05454',
                 '#30475e',
-                '#f05454'
             ]
         }]
     })
 
-
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1400);
+    }, []);
     useEffect(() => {
         const interval = setInterval(() => {
 
             fetchValues()
 
-        }, 1500);
+        }, 1200);
         return () => clearInterval(interval);
     });
 
@@ -74,11 +80,40 @@ function CakeGraph() {
             .catch((error) => console.error(error))
     }
 
+    const renderLoader = () => {
+        return (
+            <div className="wrapper">
+                <h1 className="title">Covid App</h1>
+                <ClipLoader color={"#000"} loading={loading} size={40} />
+            </div>
+        );
+    }
+
+    const renderPage = () => {
+        return (
+            <div className="container">
+
+                <div className="row">
+                    <div className="col-md-6">
+                        <h1 style={{ paddingTop: 25, paddingBottom: 5 }}>Casos filtrados por tipo</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-5">
+                        <Doughnut data={data} width={400} height={400} />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
-        <div>
-            <Doughnut data={data} width={500} height={500} />
-        </div>
+        <>
+            {loading ? renderLoader() : null}
+            {renderPage()}
+        </>
     );
+
 }
 
 export default CakeGraph;

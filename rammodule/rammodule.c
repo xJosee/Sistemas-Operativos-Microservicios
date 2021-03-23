@@ -16,19 +16,22 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Jose Eduardo Moran");
 MODULE_DESCRIPTION("Modulo que muestra propiedades de ram");
 
-
 struct sysinfo memstruct;
 long total;
 long freer;
+long used;
+long per;
 
 static int procShow(struct seq_file *m, void *v)
 {
-    
+
     si_meminfo(&memstruct);
-    
+
     total = memstruct.totalram * 4;
     freer = memstruct.freeram * 4;
-    seq_printf(m, "{\"Total\":\"%lu\", \"Libre\":\"%lu\"}", total, freer);
+    used = total - freer;
+    per = ((used * 100) / total);
+    seq_printf(m, "{\"Total\":\"%lu\", \"Libre\":\"%lu\", \"Usada\":\"%lu\", \"Porcentaje\":\"%lu\"}", total, freer, used, per);
     return 0;
 }
 
@@ -42,13 +45,11 @@ static int procOpen(struct inode *inode, struct file *file)
     return single_open(file, procShow, NULL);
 }
 
-
 static struct file_operations my_fops = {
     .owner = THIS_MODULE,
     .open = procOpen,
     .read = seq_read,
-    .write = procWrite
-};
+    .write = procWrite};
 
 static int __init test_init(void)
 {
