@@ -19,9 +19,16 @@ services:
       build: ./client
       ports:
         - "4000:4000"
+      networks: 
+        - gRPC
 
   grpc-server:
       build: ./server
+      networks: 
+        - gRPC
+networks: 
+  gRPC:
+    driver: bridge
 ```
 ## Protobuf
 ```proto
