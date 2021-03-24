@@ -85,7 +85,7 @@ function Modules() {
                     <div className="row">
                         <div className="col-md-8">
                             <Jumbotron >
-                                <h2><span style={{ color: "#30475e" }}>Total</span> | <span style={{ color: "#f05454" }}>Libre</span></h2>
+                                <h2><span style={{ color: "#30475e" }}>Total</span> | <span style={{ color: "#f05454" }}>Usada</span></h2>
                                 <h3 style={{ textAlign: "center" }}>
                                     <span style={{ color: "#30475e" }}>  {(size === 1) ? Number(total).toLocaleString('EN') + 'KB' : (size === 1024) ? Number((total / size).toFixed(2)).toLocaleString('EN') + 'MB' : Number((total / size).toFixed(4)).toLocaleString('EN') + 'GB'}</span> |
                                     <span style={{ color: "#f05454" }}> {(size === 1) ? Number(total - free).toLocaleString('EN') + 'KB' : (size === 1024) ? Number(((total - free) / size).toFixed(2)).toLocaleString('EN') + 'MB' : Number(((total - free) / size).toFixed(4)).toLocaleString('EN') + 'GB'}</span>
