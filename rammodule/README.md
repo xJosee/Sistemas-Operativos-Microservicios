@@ -35,7 +35,9 @@ si_meminfo(&memstruct);
 // Dato que el memstruct no retorna los valores en bytes, se realiza una multiplicacion 
 // para hacer la conversión
 total = memstruct.totalram * 4;
-freer = memstruct.freeram * 4;
+freer = memstruct.freeram * 4; 
+used = total - freer;
+per = ((used * 100) / total);
 
 // Se escribe en el archivo secuencial m (Por conveniencia en este caso se escribe en
 // formato json ya que seran los datos enviados a la API).
