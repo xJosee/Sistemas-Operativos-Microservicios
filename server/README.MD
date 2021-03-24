@@ -24,6 +24,8 @@ services:
       - mongo-db
     volumes:
       - /proc:/usr/src/app/proc
+    networks: 
+      -networkapi
   mongo-db:
     image: mongo
     restart: always
@@ -31,6 +33,11 @@ services:
       - "27017:27017"
     logging:
       driver: "none"
+    networks: 
+      -networkapi
+networks: 
+  networkapi:
+    driver: bridge
 ```
 ### COVID Data
 ```js

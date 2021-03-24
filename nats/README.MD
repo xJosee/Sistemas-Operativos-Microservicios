@@ -17,6 +17,8 @@ services:
   server-nats:
       image : nats
       container_name: server-nats
+      networks: 
+        -NATS
   publisher-nats:
       build: ./publisher
       restart: on-failure
@@ -24,11 +26,18 @@ services:
         - "4000:3000"
       depends_on:
         - server-nats
+      networks: 
+        -NATS
   subscriber-nats:
       build: ./subscriber
       restart: on-failure
       depends_on:
         - server-nats
+      networks: 
+        - NATS
+networks: 
+  NATS:
+    driver: bridge
 ```
 ### Subscriber
 #### Funciones

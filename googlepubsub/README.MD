@@ -19,9 +19,16 @@ services:
     restart: on-failure
     ports:
       - "4000:4000"
+    networks: 
+      - PubSub
   subscriber-pubsub:
     build: ./subscriber
     restart: on-failure
+    networks: 
+      - PubSub
+networks: 
+  PubSub:
+    driver: bridge
 ```
 ### Subscriber
 #### Funciones
