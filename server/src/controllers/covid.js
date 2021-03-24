@@ -148,7 +148,10 @@ module.exports = {
     },
 
     async getLast5(req, res) {
-        var datos = covidModel.find.sort([['_id', -1]]).limit(5);
+        var datos = await covidModel.aggregate([
+            { $sort: { '_id': -1 } },
+            { $limit: 5 }
+        ]);
         res.status(200).send(datos);
     },
 

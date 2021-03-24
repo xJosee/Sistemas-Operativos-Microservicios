@@ -22,8 +22,8 @@ function Modules() {
     }, []);
 
     useEffect(() => {
-        setSize( (indexSize === 0) ? 1 : (indexSize === 1) ? 1024 : 1024*1024 )
-    },[indexSize])
+        setSize((indexSize === 0) ? 1 : (indexSize === 1) ? 1024 : 1024 * 1024)
+    }, [indexSize])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -76,21 +76,21 @@ function Modules() {
                     <div className="row">
                         <div className="col-md-2 mx-auto" align="center">
                             <ButtonGroup style={{ paddingTop: 10, paddingBottom: 15 }}>
-                                <Button variant={ (indexSize === 0) ? "optionRAMActive" : "optionRAM" } onClick={() => {setIndexSize(0)}}>KB</Button>
-                                <Button variant={ (indexSize === 1) ? "optionRAMActive" : "optionRAM" } onClick={() => {setIndexSize(1)}}>MB</Button>
-                                <Button variant={ (indexSize === 2) ? "optionRAMActive" : "optionRAM" } onClick={() => {setIndexSize(2)}}>GB</Button>
+                                <Button variant={(indexSize === 0) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(0) }}>KB</Button>
+                                <Button variant={(indexSize === 1) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(1) }}>MB</Button>
+                                <Button variant={(indexSize === 2) ? "optionRAMActive" : "optionRAM"} onClick={() => { setIndexSize(2) }}>GB</Button>
                             </ButtonGroup>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-8">
                             <Jumbotron >
-                                <h2><span style ={{color:"#30475e"}}>Usada</span> | <span style ={{color:"#f05454"}}>Libre</span></h2>
-                                <h3 style={{textAlign: "center"}}>
-                                    <span style={{ color:"#30475e" }}>  { (size === 1) ? total + 'KB' : (size === 1024) ? (total/size).toFixed(2) + 'MB' : (total/size).toFixed(4) + 'GB'  }</span> |
-                                    <span style={{ color:"#f05454"}}> { (size === 1) ? total-free + 'KB' : (size === 1024) ? ((total-free)/size).toFixed(2) + 'MB' : ((total-free)/size).toFixed(4) + 'GB'  }</span>
+                                <h2><span style={{ color: "#30475e" }}>Usada</span> | <span style={{ color: "#f05454" }}>Libre</span></h2>
+                                <h3 style={{ textAlign: "center" }}>
+                                    <span style={{ color: "#30475e" }}>  {(size === 1) ? Number(total).toLocaleString('EN') + 'KB' : (size === 1024) ? Number((total / size).toFixed(2)).toLocaleString('EN') + 'MB' : Number((total / size).toFixed(4)).toLocaleString('EN') + 'GB'}</span> |
+                                    <span style={{ color: "#f05454" }}> {(size === 1) ? Number(total - free).toLocaleString('EN') + 'KB' : (size === 1024) ? Number(((total - free) / size).toFixed(2)).toLocaleString('EN') + 'MB' : Number(((total - free) / size).toFixed(4)).toLocaleString('EN') + 'GB'}</span>
                                 </h3>
-                                
+
                             </Jumbotron>
                         </div>
                     </div>
