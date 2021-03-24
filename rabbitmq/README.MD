@@ -20,6 +20,8 @@ services:
       ports: 
           - "5672:5672"
           - "15672:15672"
+      networks: 
+        - RabbitMQ
   publisher-rmq:
       build: ./publisher
       restart: on-failure
@@ -27,11 +29,18 @@ services:
         - "4000:3000"
       depends_on:
         - server-rmq
+      networks:
+        - RabbitMQ
   consumer-rmq:
       build: ./consumer
       restart: on-failure
       depends_on:
         - server-rmq
+      networks: 
+        - RabbitMQ
+networks: 
+  RabbitMQ:
+    driver: bridge
 ```
 ### Consumer
 #### Método
