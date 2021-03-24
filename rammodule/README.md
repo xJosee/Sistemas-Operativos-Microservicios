@@ -41,7 +41,7 @@ per = ((used * 100) / total);
 
 // Se escribe en el archivo secuencial m (Por conveniencia en este caso se escribe en
 // formato json ya que seran los datos enviados a la API).
-seq_printf(m, "{\"Total\":\"%lu\", \"Libre\":\"%lu\"}", total, freer);
+seq_printf(m, "{\"Total\":\"%lu\", \"Libre\":\"%lu\", \"Usada\":\"%lu\", \"Porcentaje\":\"%lu\"}", total, freer, used, per);
 ```
 
 ## Manual de usuario
