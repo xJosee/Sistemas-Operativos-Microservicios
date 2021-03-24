@@ -1,3 +1,13 @@
+[![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://github.com/xJosee/SO1A_G29_Proyecto1/contributors/)
+[![GitHub commits](https://img.shields.io/github/commits-since/Naereen/StrapDown.js/v1.0.0.svg)](https://github.com/xJosee/SO1A_G29_Proyecto1/commit/)
+[![made-in-VSCode](https://img.shields.io/badge/Made%20in-VSCode-1f425f.svg)](https://code.visualstudio.com/)
+[![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org)
+[![made-with-js](https://img.shields.io/badge/Made%20with-Docker-red.svg)](https://www.docker.com/)
+[![made-with-js](https://img.shields.io/badge/Made%20with-JS-yellow.svg)](https://www.javascript.com/)
+[![https://covid-app-wlvcuo66pq-uc.a.run.app](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://covid-app-wlvcuo66pq-uc.a.run.app)
+
+
+# Covid App Cloud
 ## Contenido
 - [Covid App Cloud](#covid-app-cloud)
   * [Tráfico y Middlewares](#tráfico-y-middlewares)
@@ -5,12 +15,9 @@
   * [Análisis y visualización de datos](#análisis-y-visualización-de-datos)
   * [Módulos de RAM y procesos](#módulos-de-ram-y-procesos)
 
-# Covid App Cloud
 Proyecto 1 , Sistemas Operativos 1 del 1er Semestre de 2021.
 
 Un proyecto relacionado con tecnologías de Middleware, módulos del kernel de Linux, tecnologías de almacenamiento innovadoras como NoSQL y así como tecnologías relacionadas al desarrollo web como NodeJS y ReactJS.
-
-Link a la [página web](https://covid-app-wlvcuo66pq-uc.a.run.app) desarrollada en ReactJS
 
 Autores del proyecto:
 - [josemoran40 (José Morán)](https://github.com/josemoran40)
