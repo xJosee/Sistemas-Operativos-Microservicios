@@ -5,7 +5,6 @@
 [![made-with-js](https://img.shields.io/badge/Made%20with-Docker-red.svg)](https://www.docker.com/)
 [![made-with-js](https://img.shields.io/badge/Made%20with-JS-yellow.svg)](https://www.javascript.com/)
 [![https://covid-app-wlvcuo66pq-uc.a.run.app](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://covid-app-wlvcuo66pq-uc.a.run.app/modules)
-https://covid-app-wlvcuo66pq-uc.a.run.app/modules
 
 # Covid App Cloud
 ## Contenido
